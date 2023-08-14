@@ -36,7 +36,7 @@ body {
 }
 
 .page-container {
-    padding: 20px;
+    padding: 0px 20px;
     max-width: 450px;
     margin: auto;
     font-family: 'Poppins', sans-serif;
