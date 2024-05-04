@@ -5941,15 +5941,15 @@ img{
                         }
                     }
                 }, [s._v(" Aggiungi ")]
-                a("span", {
-                   staticClass: "divider"
-                }, [s._v("-")]), a("Price", {
-                    attrs: {
-                         customClass: "product__price product__price--desktop",
-                         priceTotal: (+s.variant.price).toFixed(2),
-                         priceSales: null !== (i = s.discount) && void 0 !== i && null !== (o = i.next) && void 0 !== o && o.discountPercentage ? +s.calcDiscountPrice(+s.variant.price, s.discount.next.discountPercentage) : ""
-                     }
-                 })]
+                // , a("span", {
+            //        staticClass: "divider"
+            //    }, [s._v("-")]), a("Price", {
+            //        attrs: {
+            //             customClass: "product__price product__price--desktop",
+            //             priceTotal: (+s.variant.price).toFixed(2),
+            //             priceSales: null !== (i = s.discount) && void 0 !== i && null !== (o = i.next) && void 0 !== o && o.discountPercentage ? +s.calcDiscountPrice(+s.variant.price, s.discount.next.discountPercentage) : ""
+            //         }
+            //     })]
                 , 1)]) : a("div", {
                     staticClass: "product__oos"
                 }, [s._v("Esaurito ")])])]) : s._e()
