@@ -67,7 +67,11 @@ body {
   .page-column {
     width: 100% !important;
     height: auto !important;
+    padding-block: 30px;
   }
+  .page-column:last-child {
+  height: 500px !important
+}
   .page-container {
     max-width: 350px !important;
   }
