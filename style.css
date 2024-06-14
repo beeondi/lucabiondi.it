@@ -62,9 +62,11 @@ body {
 @media only screen and (max-width:768px) {
   .page {
     flex-direction: column;
+    height: 100% !important;
   }
   .page-column {
     width: 100% !important;
+    height: auto !important;
   }
   .page-container {
     max-width: 350px !important;
