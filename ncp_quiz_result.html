@@ -37,7 +37,7 @@
             flex-direction: column;
             align-items: center;
             position: relative;
-            margin: 0 10px;
+            margin: 0 8px;
         }
 
         .bar {
@@ -81,27 +81,6 @@
             z-index: 10;
         }
 
-        .dot {
-            position: absolute;
-            top: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            border: 3px solid white;
-            box-shadow: 0 2px 8px rgba(0, 95, 90, 0.3);
-            z-index: 10;
-        }
-
-        .dot.visible-results {
-            background: #88A27B;
-        }
-
-        .dot.goal {
-            background: #005F5A;
-        }
-
         .badge::after {
             content: '';
             position: absolute;
@@ -130,7 +109,28 @@
             border-top: 6px solid #005F5A;
         }
 
-        /* Stili delle barre */
+        .dot {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            border: 3px solid white;
+            box-shadow: 0 2px 8px rgba(0, 95, 90, 0.3);
+            z-index: 10;
+        }
+
+        .dot.visible-results {
+            background: #88A27B;
+        }
+
+        .dot.goal {
+            background: #005F5A;
+        }
+
+        /* Stili delle barre - Desktop */
         .bar1 {
             height: 60px;
             width: 60px;
@@ -221,7 +221,6 @@
             box-shadow: 0 12px 35px rgba(0, 95, 90, 0.4);
         }
 
-        /* Nascondi alcune etichette per default */
         .hidden {
             visibility: hidden;
         }
@@ -252,6 +251,8 @@
             color: #333;
             margin-bottom: 30px;
             font-weight: 300;
+            text-align: center;
+            padding: 0 20px;
         }
 
         .loader {
@@ -287,6 +288,144 @@
 
         .chart-content.show {
             opacity: 1;
+        }
+
+        /* MOBILE BREAKPOINTS */
+        @media (max-width: 768px) {
+            body {
+                padding: 20px 15px;
+            }
+            
+            .title {
+                font-size: 22px;
+                padding: 0 10px;
+            }
+            
+            .congratulations {
+                font-size: 16px;
+            }
+            
+            .subtitle {
+                font-size: 14px;
+                padding: 0 10px;
+            }
+            
+            .chart {
+                height: 220px;
+                margin: 30px 0;
+                padding: 0 10px;
+            }
+            
+            .bar-container {
+                margin: 0 4px;
+            }
+            
+            .bar1 { height: 45px; width: 45px; }
+            .bar2 { height: 75px; width: 45px; }
+            .bar3 { height: 105px; width: 45px; }
+            .bar4 { height: 135px; width: 45px; }
+            .bar5 { height: 165px; width: 45px; }
+            .bar6 { height: 210px; width: 45px; }
+            
+            .month-label {
+                font-size: 12px;
+            }
+            
+            .badge {
+                font-size: 10px;
+                padding: 6px 10px;
+                top: -32px;
+            }
+            
+            .dot {
+                width: 10px;
+                height: 10px;
+                top: -12px;
+                border: 2px solid white;
+            }
+            
+            .cta-button {
+                font-size: 16px;
+                padding: 12px 30px;
+                margin: 30px auto 0;
+            }
+            
+            .loader-text {
+                font-size: 20px;
+            }
+            
+            .loader {
+                width: 250px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 15px 10px;
+            }
+            
+            .title {
+                font-size: 18px;
+                padding: 0 5px;
+            }
+            
+            .congratulations {
+                font-size: 14px;
+                letter-spacing: 1px;
+            }
+            
+            .subtitle {
+                font-size: 13px;
+                padding: 0 5px;
+            }
+            
+            .chart {
+                height: 180px;
+                padding: 0 5px;
+                margin: 25px 0;
+            }
+            
+            .bar-container {
+                margin: 0 2px;
+            }
+            
+            .bar1 { height: 30px; width: 35px; }
+            .bar2 { height: 55px; width: 35px; }
+            .bar3 { height: 80px; width: 35px; }
+            .bar4 { height: 105px; width: 35px; }
+            .bar5 { height: 130px; width: 35px; }
+            .bar6 { height: 160px; width: 35px; }
+            
+            .month-label {
+                font-size: 10px;
+            }
+            
+            .badge {
+                font-size: 8px;
+                padding: 4px 8px;
+                top: -25px;
+            }
+            
+            .dot {
+                width: 8px;
+                height: 8px;
+                top: -8px;
+                border: 2px solid white;
+            }
+            
+            .cta-button {
+                font-size: 14px;
+                padding: 10px 25px;
+                margin: 25px auto 0;
+            }
+            
+            .loader-text {
+                font-size: 18px;
+            }
+            
+            .loader {
+                width: 200px;
+            }
         }
     </style>
 </head>
