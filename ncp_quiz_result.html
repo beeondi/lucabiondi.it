@@ -40,11 +40,24 @@
             margin: 0 8px;
         }
 
-        .bar {
+        .bar-track {
+            width: 60px;
+            height: 280px;
+            background: rgba(0, 0, 0, 0.05);
             border-radius: 15px;
             position: relative;
             margin-bottom: 20px;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .bar {
+            border-radius: 12px;
+            position: relative;
             box-shadow: 0 8px 25px rgba(0, 95, 90, 0.15);
+            width: 100%;
         }
 
         .bar::before {
@@ -133,37 +146,31 @@
         /* Stili delle barre - Desktop */
         .bar1 {
             height: 60px;
-            width: 60px;
             background: linear-gradient(135deg, #d4a5a5, #c49393);
         }
 
         .bar2 {
             height: 100px;
-            width: 60px;
             background: linear-gradient(135deg, #88A27B, #7a9470);
         }
 
         .bar3 {
             height: 140px;
-            width: 60px;
             background: linear-gradient(135deg, #b8c29e, #a8b48e);
         }
 
         .bar4 {
             height: 180px;
-            width: 60px;
             background: linear-gradient(135deg, #d4d49a, #c8c888);
         }
 
         .bar5 {
             height: 220px;
-            width: 60px;
             background: linear-gradient(135deg, #c4a285, #b89475);
         }
 
         .bar6 {
             height: 280px;
-            width: 60px;
             background: linear-gradient(135deg, #005F5A, #004a46);
         }
 
@@ -320,12 +327,17 @@
                 margin: 0 4px;
             }
             
-            .bar1 { height: 45px; width: 45px; }
-            .bar2 { height: 75px; width: 45px; }
-            .bar3 { height: 105px; width: 45px; }
-            .bar4 { height: 135px; width: 45px; }
-            .bar5 { height: 165px; width: 45px; }
-            .bar6 { height: 210px; width: 45px; }
+            .bar-track {
+                width: 45px;
+                height: 210px;
+            }
+            
+            .bar1 { height: 45px; }
+            .bar2 { height: 75px; }
+            .bar3 { height: 105px; }
+            .bar4 { height: 135px; }
+            .bar5 { height: 165px; }
+            .bar6 { height: 210px; }
             
             .month-label {
                 font-size: 12px;
@@ -334,14 +346,14 @@
             .badge {
                 font-size: 10px;
                 padding: 6px 10px;
-                top: -32px;
+                margin-top: -6px;
             }
             
             .dot {
                 width: 10px;
                 height: 10px;
-                top: -12px;
                 border: 2px solid white;
+                top: -5px;
             }
             
             .cta-button {
@@ -389,12 +401,17 @@
                 margin: 0 2px;
             }
             
-            .bar1 { height: 30px; width: 35px; }
-            .bar2 { height: 55px; width: 35px; }
-            .bar3 { height: 80px; width: 35px; }
-            .bar4 { height: 105px; width: 35px; }
-            .bar5 { height: 130px; width: 35px; }
-            .bar6 { height: 160px; width: 35px; }
+            .bar-track {
+                width: 35px;
+                height: 160px;
+            }
+            
+            .bar1 { height: 30px; }
+            .bar2 { height: 55px; }
+            .bar3 { height: 80px; }
+            .bar4 { height: 105px; }
+            .bar5 { height: 130px; }
+            .bar6 { height: 160px; }
             
             .month-label {
                 font-size: 10px;
@@ -403,14 +420,14 @@
             .badge {
                 font-size: 8px;
                 padding: 4px 8px;
-                top: -25px;
+                margin-top: -4px;
             }
             
             .dot {
                 width: 8px;
                 height: 8px;
-                top: -8px;
                 border: 2px solid white;
+                top: -4px;
             }
             
             .cta-button {
@@ -451,31 +468,45 @@
             
             <div class="chart">
                 <div class="bar-container">
-                    <div class="bar bar1"></div>
+                    <div class="bar-track">
+                        <div class="bar bar1"></div>
+                    </div>
                     <div class="month-label" id="month1">Settembre</div>
                 </div>
                 <div class="bar-container">
-                    <div class="badge visible-results hidden">Risultati visibili</div>
-                    <div class="dot visible-results hidden"></div>
-                    <div class="bar bar2"></div>
+                    <div class="bar-track">
+                        <div class="bar bar2">
+                            <div class="badge visible-results hidden">Risultati visibili</div>
+                            <div class="dot visible-results hidden"></div>
+                        </div>
+                    </div>
                     <div class="month-label hidden" id="month2">Ottobre</div>
                 </div>
                 <div class="bar-container">
-                    <div class="bar bar3"></div>
+                    <div class="bar-track">
+                        <div class="bar bar3"></div>
+                    </div>
                     <div class="month-label hidden" id="month3">Novembre</div>
                 </div>
                 <div class="bar-container">
-                    <div class="badge goal">Obiettivo</div>
-                    <div class="dot goal"></div>
-                    <div class="bar bar4"></div>
+                    <div class="bar-track">
+                        <div class="bar bar4">
+                            <div class="badge goal">Obiettivo</div>
+                            <div class="dot goal"></div>
+                        </div>
+                    </div>
                     <div class="month-label" id="month4">Dicembre</div>
                 </div>
                 <div class="bar-container">
-                    <div class="bar bar5"></div>
+                    <div class="bar-track">
+                        <div class="bar bar5"></div>
+                    </div>
                     <div class="month-label hidden" id="month5">Gennaio</div>
                 </div>
                 <div class="bar-container">
-                    <div class="bar bar6"></div>
+                    <div class="bar-track">
+                        <div class="bar bar6"></div>
+                    </div>
                     <div class="month-label" id="month6">Febbraio</div>
                 </div>
             </div>
