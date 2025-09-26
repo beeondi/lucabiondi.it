@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Grafico Progresso Mensile</title>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -142,7 +141,6 @@
             background: #005F5A;
         }
 
-        /* Stili delle barre - Desktop */
         .bar1 {
             height: 60px;
             background: linear-gradient(135deg, #d4a5a5, #c49393);
@@ -231,7 +229,6 @@
             visibility: hidden;
         }
 
-        /* Loader styles */
         .loader-container {
             position: fixed;
             top: 0;
@@ -296,7 +293,6 @@
             opacity: 1;
         }
 
-        /* MOBILE BREAKPOINTS */
         @media (max-width: 768px) {
             body {
                 padding: 20px 15px;
@@ -444,7 +440,6 @@
     </style>
 </head>
 <body>
-    <!-- Loader -->
     <div class="loader-container" id="loader">
         <div class="loader-text">Stiamo analizzando i tuoi risultati</div>
         <div class="loader">
@@ -452,7 +447,6 @@
         </div>
     </div>
 
-    <!-- Chart Content -->
     <div class="chart-wrapper">
         <div class="chart-content" id="chartContent">
             <h1 class="title">Basandoci sulle tue risposte, potrai eliminare i fastidiosi funghi delle unghie in soli <u>3 mesi</u> grazie a Nail Care Pen™</h1>
@@ -508,12 +502,11 @@
                 </div>
             </div>
             
-            <button class="cta-button">Voglio lo sconto</button>
+            <a href="https://www.your-medical-insights.com/it/offer/nail-care-pen" class="cta-button">Voglio lo sconto</button>
         </div>
     </div>
 
     <script>
-        // Funzione per ottenere i nomi dei mesi a partire da quello corrente
         function getMonthNames() {
             const months = [
                 'Gennaio', 'Febbraio', 'Marzo', 'Aprile', 'Maggio', 'Giugno',
@@ -531,25 +524,20 @@
             return result;
         }
 
-        // Aggiorna i nomi dei mesi
         function updateMonthLabels() {
             const monthNames = getMonthNames();
             
-            // Aggiorna solo i mesi visibili (1°, 4°, 6°)
             document.getElementById('month1').textContent = monthNames[0];
             document.getElementById('month4').textContent = monthNames[3];
             document.getElementById('month6').textContent = monthNames[5];
             
-            // Mostra il badge e dot "Risultati visibili" al secondo mese
             const badge = document.querySelector('.visible-results.badge');
             const dot = document.querySelector('.visible-results.dot');
             badge.classList.remove('hidden');
             dot.classList.remove('hidden');
         }
 
-        // Inizializza il grafico
         document.addEventListener('DOMContentLoaded', function() {
-            // Nasconde il loader dopo 5 secondi e mostra il grafico
             setTimeout(() => {
                 const loader = document.getElementById('loader');
                 const chartContent = document.getElementById('chartContent');
@@ -557,7 +545,6 @@
                 loader.classList.add('hide');
                 chartContent.classList.add('show');
                 
-                // Aggiorna i mesi dopo che il grafico è visibile
                 setTimeout(() => {
                     updateMonthLabels();
                 }, 500);
