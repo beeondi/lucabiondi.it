@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The truth behind the first million</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background-color: #000;
+            color: #fff;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            line-height: 1.6;
+            padding: 40px 20px;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            font-size: 2em;
+            margin-bottom: 20px;
+            line-height: 1.3;
+        }
+        
+        h2 {
+            font-size: 1.5em;
+            margin-top: 40px;
+            margin-bottom: 15px;
+        }
+        
+        p {
+            margin-bottom: 20px;
+        }
+        
+        strong {
+            color: #fff;
+            font-weight: 600;
+        }
+        
+        hr {
+            border: none;
+            border-top: 1px solid #333;
+            margin: 40px 0;
+        }
+        
+        em {
+            color: #ccc;
+            font-style: italic;
+        }
+        
+        @media (max-width: 600px) {
+            body {
+                padding: 20px 15px;
+            }
+            
+            h1 {
+                font-size: 1.5em;
+            }
+            
+            h2 {
+                font-size: 1.2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <img src="https://cdn.shopify.com/s/files/1/0686/1717/5317/files/Screenshot_2025-10-15_alle_18.09.24.png?v=1762460912" width="100%" height="auto">
+        
+        <hr>
+        
+        <h2>The Truth Behind My First Million</h2>
+        
+        <p>Whoever thinks "performance" is a marketing metric doesn’t know a shit about marketing.</p>
+
+        <p>If you still think marketing is the science of choosing between CBOs and ABOs, or if you’re still jerking off on "Andromeda" thinking you’ve cracked the code, do us both a favor: close this page. Go back to your dashboards. This isn't for you.</p>
+        
+        <p>An e-commerce I manage just broke its first million dollars. By modern standards, I should be popping champagne. I should be posting a screenshot of the Shopify dashboard on LinkedIn with a caption about "hustle" and "scaling strategies." But I’m not celebrating. I’m pissed off.</p>
+        
+        <p>Because to get this client to this million, I had to do everything except marketing. I didn't get here by building a legacy. I got here by feeding a machine. I spent the last year acting as a glorified logistics manager and a slave to pixel data, obsessing over technicalities that have zero soul. That isn't marketing. That’s digital plumbing.</p>
+        
+        <p>I hate this "performance" era because I was raised by giants, not gamblers. I look at the industry now and it feels like a casino. Everyone treats this job like a fucking video game. Budget up, budget down. Turn the knob left, turn the knob right. It’s like playing with money without any sense of value or direction. They think "scaling" is just pressing a button, completely ignoring that there are actual human beings on the other side of the screen.</p>
+        
+        <p>I learned the opposite. My first boss, Furio, was one of the greatest men I’ve ever met. He didn't care about the buttons; he cared about the message. He had this incredible capacity to spend 15 years learning how to think, how to understand the market, just so he could spend five minutes writing a campaign that would change everything. That is mastery. That is respect for the craft.</p>
+        
+        <p>And then I look at Carlo, probably the biggest Apple fanboy on earth, but the man understands branding in his bones. We’ve been managing an e-commerce project together for years—a 35-year-old beauty brand with a deep, sustainable mission. And you know what? It grows slowly. And we don’t give a fuck. The company doesn't give a fuck. Because we aren't trying to squeeze a quick buck out of an algorithm; we are protecting a legacy. We look at the big picture while everyone else is staring at their daily ROAS.</p>
+        
+        <p>This disconnect is exactly why I shot down "Beyond Digital," my landing page service. It was profitable, sure. But I couldn't stomach it anymore. Everything now is a copycat. Nobody gives a shit about true marketing or branding. Every request was "make it look like them" or "copy this template." The internet has become a hall of mirrors reflecting mediocrity, and I refused to hold the mirror.</p>
+        
+        <p>So, here is the uncomfortable truth about this first million: It feels empty because the industry has lost its way. If you think marketing is a game of budget allocation, you are fragile. Real marketing is about building something that survives when the algorithm changes.</p>
+        
+        <p>I am done playing the performance game. I’m going back to the roots. Back to the thinking. Back to the big picture. If you’re looking for someone to play with your budget settings, go hire a kid with a calculator. If you want to build a Brand, stick around.</p>
+
+    </div>
+</body>
+</html>
