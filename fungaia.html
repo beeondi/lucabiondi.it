@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FUNGAIA | Overview</title>
+
+
+    <style>
+        body {
+            background-size: 1rem;
+            max-width: 1400px;
+            padding-inline: 1.4rem;
+            margin: auto;
+            background-color: #342B2B;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            display: flex;
+            align-items: center;
+            height: 100dvh;
+            overflow: hidden;
+            gap: 2rem
+        }
+        .button {
+            display: inline-block;
+            padding: 20px;
+            background-color: #ffffff;
+            color: #342B2B;
+            border: 1px solid black;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: .5s ease
+        }
+        .button:hover {
+            color: #ffffff;
+            background-color: #342B2B;
+            border-color: white
+        }
+        @media screen and (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                justify-content: center;
+            }
+             .container > div {
+                width: 100% !important;
+            }
+            
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: .5rem;
+            padding: 0;
+            margin: 0;
+        }
+        input[type="password"] {
+            padding: 20px;
+            border: 1px solid #ffffff;
+            border-radius: 5px;
+            background-color: transparent;
+            color: #ffffff;
+        }
+         input[type="password"]::placeholder {
+            color: #ffffff;
+        }
+        .protected-hidden {
+            display: none;
+        }
+        .protected-visible {
+            display: flex;
+            animation: reveal 0.6s ease both;
+        }
+        .auth-visible {
+            animation: reveal 0.6s ease both;
+        }
+        @keyframes reveal {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .marquee {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: #ffffff;
+            opacity: 0.5;
+            padding: 10px 0;
+            font-size: 12px;
+            z-index: 1000;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+        .marquee-track {
+            display: inline-flex;
+            align-items: center;
+            gap: 2rem;
+            animation: marquee-scroll 18s linear infinite;
+            --marquee-shift: 50%;
+        }
+        .marquee-item {
+            display: inline-block;
+        }
+        @keyframes marquee-scroll {
+            from {
+                transform: translateX(0);
+            }
+            to {
+                transform: translateX(calc(-1 * var(--marquee-shift)));
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="marquee" aria-hidden="true">
+        <div class="marquee-track" id="marquee-track">
+            <span class="marquee-item">© Strictly Confidential | For Internal Use Only</span>
+        </div>
+    </div>
+    
+    <div class="container auth-visible" id="auth-container">
+        <div style="width: 30dvw">
+            <img src="https://fungaia-ram.myshopify.com/cdn/shop/files/fungaia-logo-3-white.png" alt="FUNGAIA Logo" style="width: 6rem; height: auto">
+            <h1>FUNGAIA Theme Preview</h1>
+            <form id="auth-form">
+                <input type="password" id="password" name="password" placeholder="Inserisci la Password" autocomplete="off" required>
+                <button class="button" type="submit">Accedi</button>
+            </form>
+            <p id="auth-error" style="margin-top: 0.5rem; color: #ffb3b3; display: none;">Password errata.</p>
+        </div>
+   </div>
+
+    <div class="container protected-hidden" id="protected-content">
+        <div style="width: 30dvw">
+            <img src="https://fungaia-ram.myshopify.com/cdn/shop/files/fungaia-logo-3-white.png" alt="FUNGAIA Logo" style="width: 6rem; height: auto">
+            <h1>FUNGAIA Overview</h1>
+            <p>Presentazione Tema | 24.02.2026</p>
+            <a class="button" href="https://fungaia-ram.myshopify.com/" target="_blank">Clicca qui per visualizzare il tema</a>
+            <p><em>Per accedere inserisci la password: fungaia</em></p>
+        </div>
+        <div style="width: 70dvw; position: relative">
+            <div style="aspect-ratio: 16 / 9;"><iframe src="https://streamyard.com/e/k8b3ubu3hcri" width="100%" height="100%" frameborder="0" title=Incorpora registrazione allowfullscreen style="width:100%;height:100%;position:absolute;left:0px;top:0px;overflow:hidden;"></iframe></div>
+        </div>
+   </div>
+    <script>
+        const form = document.getElementById("auth-form");
+        const passwordInput = document.getElementById("password");
+        const protectedContent = document.getElementById("protected-content");
+        const errorMessage = document.getElementById("auth-error");
+        const authContainer = document.getElementById("auth-container");
+        const expectedPassword = "fungaia";
+        const sessionKey = "fungaia-auth";
+
+        const showProtected = () => {
+            protectedContent.classList.remove("protected-hidden");
+            protectedContent.classList.add("protected-visible");
+            authContainer.style.display = "none";
+        };
+
+        if (sessionStorage.getItem(sessionKey) === "true") {
+            showProtected();
+        }
+
+        form.addEventListener("submit", (event) => {
+            event.preventDefault();
+            const isValid = passwordInput.value === expectedPassword;
+            if (isValid) {
+                sessionStorage.setItem(sessionKey, "true");
+                showProtected();
+            }
+            errorMessage.style.display = isValid ? "none" : "block";
+            if (isValid) {
+                passwordInput.value = "";
+            }
+        });
+
+        const marqueeTrack = document.getElementById("marquee-track");
+        const marqueeContainer = document.querySelector(".marquee");
+        if (marqueeTrack && marqueeContainer) {
+            const originalMarkup = marqueeTrack.dataset.original || marqueeTrack.innerHTML;
+            marqueeTrack.dataset.original = originalMarkup;
+
+            const buildMarquee = () => {
+                marqueeTrack.innerHTML = originalMarkup;
+                let loopWidth = marqueeTrack.scrollWidth;
+                const containerWidth = marqueeContainer.offsetWidth;
+
+                while (loopWidth < containerWidth) {
+                    marqueeTrack.innerHTML += originalMarkup;
+                    loopWidth = marqueeTrack.scrollWidth;
+                }
+
+                const loopContent = marqueeTrack.innerHTML;
+                marqueeTrack.innerHTML = loopContent + loopContent;
+                marqueeTrack.style.setProperty("--marquee-shift", `${loopWidth}px`);
+            };
+
+            buildMarquee();
+            window.addEventListener("resize", buildMarquee);
+        }
+    </script>
+</body>
+</html>
