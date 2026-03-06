@@ -2,7 +2,7 @@ function exportShopifyOrders() {
   // Configuration
   const CONFIG = {
     shopifyStore: "spalding-bros",
-    apiToken: "XXX", // Consider moving to PropertiesService
+    apiToken: "XXX",
     defaultTaxRate: "4",
     ordersLimit: 250,
     outputFolder: "ORDINI"
