@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How I actually A/B Test My Sales Pages</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background-color: #000;
+            color: #fff;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            line-height: 1.6;
+            padding: 40px 20px;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            font-size: 2em;
+            margin-bottom: 20px;
+            line-height: 1.3;
+        }
+        
+        h2 {
+            font-size: 1.5em;
+            margin-top: 40px;
+            margin-bottom: 15px;
+        }
+        
+        p {
+            margin-bottom: 20px;
+        }
+        
+        strong {
+            color: #fff;
+            font-weight: 600;
+        }
+        
+        hr {
+            border: none;
+            border-top: 1px solid #333;
+            margin: 40px 0;
+        }
+        
+        em {
+            color: #ccc;
+            font-style: italic;
+        }
+
+        code {
+            color: rgb(155, 233, 99)
+        }
+        
+        @media (max-width: 600px) {
+            body {
+                padding: 20px 15px;
+            }
+            
+            h1 {
+                font-size: 1.5em;
+            }
+            
+            h2 {
+                font-size: 1.2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        
+        <p>Ci ho sempre capito relativamente poco di social ads, da un anno a questa parte ancora meno.</p>
+
+        <p>Diciamo che, da buon romantico della comunicazione, tendo sempre a dare più importanza alla qualità piuttosto che alla quantità (periodo storico decisamente sbagliato per affermare una cosa del genere).</p>
+
+        <img src="https://engineering.fb.com/wp-content/uploads/2024/12/Personalized-Ads-Retrieval-Paradigm-Final.png" width="100%" height="auto" alt="Facebook Andromeda" style="margin-bottom: 20px">
+
+        <p>Ormai c'è bisogno di talmente tanta varianza/testing che se una volta era una barzelletta definire "media buyer" un Facebook Ads Specialist, ora il termine risulta quasi riduttivo.</p>
+
+        <p>Pare quasi più di ritrovarsi davanti dei trader piuttosto che dei pubblicitari (se hai riso sappi che fa ridere perchè è vero).</p>
+
+        <p>Ma perchè ti sto parlando di questo?</p>
+
+        <p>Perchè a cascata sta cosa è logicamente caduta anche su noi poveri romantici rilegati a fare attività che ancora un po' di romanticismo ce l'hanno, tipo la CRO.</p>
+
+        <p>E se prima pensavamo di essere in una botte di ferro con quel dinosauro di landing creato nel 2006 (che probabilmente ha ancora pezzi di Adobe Flash dentro), ora non è più proprio così.</p>
+
+        <p>Ed è qui che entriamo in gioco noi paladini del post-click, pronti a costruire UX su misura per ogni tipo di audience e a sentirci dire <em>"zio va che sta landing non converte più un cazzo"</em></p>
+
+        <img src="https://cdn.shopify.com/s/files/1/0686/1717/5317/files/Screenshot_2026-07-09_alle_18.27.05.png?v=1783614449" width="100%" height="auto">
+
+        <p>Alla faccia del cazzo.</p>
+
+        <p>Come ho detto, di social ads ci ho sempre capito relativamente poco... ma so che, quando funzionano, meno le tocchi e meglio è.</p>
+
+        <p>Allo stesso tempo però serve varianza post-click.</p>
+
+        <p>Allo stesso tempo magari hai dei budget da rispettare per la fase di testing.</p>
+
+        <p>E quindi come si fa? Si A/B testa! Ma se ho un budget da rispettare? Se duplico l'ad e gira di merda?</p>
+
+        <p>È un circolo vizioso.</p>
+        
+        <hr>
+        
+        <h2>Come faccio A/B Testing post-click senza toccare le ads</h2>
+        
+        <p>Premessa: il caso che presento qui è probabilmente più unico che raro.</p>
+        
+        <p>Questo brand ha letteralmente una singola campagna attiva, con un adset e una cosa tipo 60 creatività accese dentro.</p>
+
+        <p>Non perchè io non sia in grado di capire come creare una campagna che non sembri fatta da un bambino di 10 anni, ma perchè in un anno di testing è letteralmente l'unica struttura che abbia mai portato mezzo risultato.</p>
+        
+        <img src="https://cdn.shopify.com/s/files/1/0686/1717/5317/files/Screenshot_2026-07-09_alle_18.39.25.png?v=1783615203" width="100%" height="auto" style="margin-bottom: 20px">
+
+        <p>Ovviamente finisce tutto sulla stessa landing (il famoso dinosauro menzionato prima).</p>
+
+        <p>E quando il binomio ads <> landing ha smesso di funzionare, avevo due strade:</p>
+
+        <p>- Ragionare a mo di <em>"quello che è stato è stato"</em> e lanciare nuove ads con nuove landing, rischiando di fare un buco nell'acqua;</p>
+
+        <p>- Cercare di ridare nuova vita alle vecchie ads testandole su nuove landing, visto che i dati pre-click continuavano a rimanere buoni.</p>
+
+        <p>Ma una canaglia come me non si accontenta di fare un redirect, anche perchè alcune ads continuavano a girare decentemente sulla landing storica.</p>
+
+        <p>Ecco perchè ho deciso di sviluppare un giocattolino manovrabile a mio piacimento.</p>
+
+        <p>Il funzionamento è molto semplice:</p>
+
+        <p>Tutte le ads finiscono all'interno di un ponte che smista la destinazione dove voglio io, sulla base dell'ad da cui un utente arriva.</p>
+
+        <img src="https://cdn.shopify.com/s/files/1/0686/1717/5317/files/BRIDGE.png?v=1783616714" width="100%" height="auto" style="margin-bottom: 20px">
+        
+        <p>Ogni ad ha uno speciale parametro all'interno del nome, che mi permette di filtrare il traffico in ingresso e reindirizzarlo alla landing più affine all'utente che sto targetizzando.</p>
+
+        <p>Allo stesso tempo, in momenti particolari dell'anno (Black Friday, ad esempio), posso utilizzare questo sistema per mandare tutto il traffico verso la stessa pagina d'atterraggio.</p>
+        
+        <p>Per farla breve, ho il totale controllo del post-click, senza mai toccare nulla in ads se non è necessario.</p>
+        
+        <hr>
+        
+        <h2>Overkill? Al 99.99%.</h2>
+        
+        <p>Lasciando riposare in pace il buon vecchio Google Optimize, ci sono migliaia di app sullo Shopify App Store per fare A/B Testing, addirittura è uscito Rollout che è nativamente dentro la piattaforma... quindi perchè complicarsi tanto la vita?</p>
+
+        <p>Da un lato perchè diamo tutti già abbastanza soldi a Shopify per spenderne altrettanti in app di terze parti, dall'altra perchè Rollout ad ora è estremamente limitato, ma soprattutto perchè mi chiamo Luca come il Puma e quindi son matto se voglio.</p>
+
+        <img src="https://media.tenor.com/jU3BZYnfKKEAAAAd/il-puma-la-mossa.gif" width="100%" style="margin-bottom: 20px">
+        
+        <hr>
+        
+        <h2>How to:</h2>
+        
+        <p>Se non hai voglia di dare soldi ad app di terze parti, figurati quanta voglia hai di darne a me.</p>
+        
+        <p>Ecco perchè il codice per replicare sta cosa te lo regalo qui sotto.</p>
+
+        <p>Tutto ciò che devi fare è entrare nell'editor del tema Shopify (l'editor del codice, non l'editor visivo), aprire la cartella "templates" e creare un nuovo file chiamato "page.lpsplit.liquid".</p>
+
+        <p>Mi raccomando: in liquid, non in JSON, non farti spaventare dal fatto che gli altri template sono tutti .json.</p>
+
+        <p>Poi incolli il codice che trovi al link qui sotto e salvi.</p>
+
+        <a href="/page.lpsplit.liquid" target="_blank" style="color:#bfd460;font-weight:bold; text-decoration: underline">>> Vai al codice</a>
+        
+        <p style="margin-top:20px">- In ogni <code>match</code> inserisci il famoso parametro che aggiungi al nome dell'ad (che deve necessariamente passare come utm_content);</p>
+
+        <p>- In <code>variants</code> inserisci le varie opzioni di landing page con i relativi pesi;</p>
+
+        <p>- Nel <code>fallback</code> e nei <code>noscript</code> che trovi in fondo al codice inserisci l'url della landing nel caso in cui non venga trovata alcuna route corrispondente.</p>
+        
+        <p>Infine, crei una nuova pagina (o riutilizzi quella verso cui stai già mandando le tue ads) e nelle impostazioni della pagina, selezioni il modello "lpsplit".</p>
+
+        <img src="https://cdn.shopify.com/s/files/1/0917/7746/6693/files/Screenshot_2026-07-09_alle_19.46.46.png?v=1783619235" width="100%" style="margin-bottom: 20px">
+        
+        <p>That's it, il codice farà il resto.</p>
+
+        <p>Ovviamente, gli UTM originali vengono passati all'interno della pagina finale, così non rischierai di perdere alcun dato.</p>
+        
+        <p>Se questo ha valore per te, anche se siamo tutti sufficientemente poveri da non voler pagare app di terze parti, puoi pagarmi un caffè <a href="https://buymeacoffee.com/beeondi" style="color:#bfd460;font-weight:bold">cliccando qui</a> o su PayPal <a href="https://paypal.me/LBiondi" style="color:#bfd460;font-weight:bold">cliccando qui</a>.</p>
+
+        <p>Buon testing!</p>
+
+    </div>
+</body>
+</html>

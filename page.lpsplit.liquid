@@ -1,0 +1,86 @@
+{% layout none %}
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<title>...</title>
+<script>
+(function(){
+	var ROUTES = [
+		{
+			match: '_angle-a',
+			variants: [
+				{ key: 'a-listicle', url: 'https://www.example.com/pages/angle-a-listicle', weight: 30 },
+				{ key: 'a-native',   url: 'https://www.example.com/pages/angle-a-native',   weight: 70 }
+			]
+		},
+		{
+			match: '_angle-b',
+			variants: [
+				{ key: 'b-advertorial', url: 'https://www.example.com/pages/angle-b-adv',  weight: 50 },
+				{ key: 'b-direct',      url: 'https://www.example.com/pages/angle-b-lp',   weight: 50 }
+			]
+		}
+	];
+
+	var FALLBACK = {
+		match: 'default',
+		variants: [
+			{ key: 'default', url: 'https://www.example.com/pages/default-lp', weight: 100 }
+		]
+	};
+
+	var TEST_VERSION = 'v1';
+
+	var params = new URLSearchParams(window.location.search);
+	var utm = (params.get('utm_content') || '').toLowerCase();
+
+	// 1. Trova la route
+	var route = FALLBACK;
+	for (var i = 0; i < ROUTES.length; i++) {
+		if (utm.indexOf(ROUTES[i].match.toLowerCase()) !== -1) {
+			route = ROUTES[i];
+			break;
+		}
+	}
+
+	var KEY = 'utm_split_' + TEST_VERSION + '_' + route.match;
+	var v = null;
+	try { v = localStorage.getItem(KEY); } catch(e){}
+	var valid = route.variants.some(function(x){ return x.key === v; });
+
+	if (!valid) {
+		var total = route.variants.reduce(function(s, x){ return s + x.weight; }, 0);
+		var r = Math.random() * total, acc = 0;
+		for (var j = 0; j < route.variants.length; j++) {
+			acc += route.variants[j].weight;
+			if (r < acc) { v = route.variants[j].key; break; }
+		}
+		if (!v) v = route.variants[route.variants.length - 1].key; // safety
+		try { localStorage.setItem(KEY, v); } catch(e){}
+	}
+
+	var target = null;
+	for (var k = 0; k < route.variants.length; k++) {
+		if (route.variants[k].key === v) target = route.variants[k];
+	}
+	var url = new URL(target.url);
+	try {
+		params.forEach(function(val, key){
+			url.searchParams.set(key, val);
+		});
+	} catch(e){}
+	url.searchParams.set('lpv', v);
+
+	window.location.replace(url.toString());
+})();
+</script>
+<noscript>
+	<meta http-equiv="refresh" content="0;url=https://www.example.com/pages/default-lp">
+</noscript>
+</head>
+<body>
+	<noscript><a href="https://www.example.com/pages/default-lp">Continua &rarr;</a></noscript>
+</body>
+</html>
