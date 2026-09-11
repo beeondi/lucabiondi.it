@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Implement Scratch&Win Pop-Up</title>
+
+    <style>
+        :root {
+            --page-bg: #050608;
+            --panel-bg: #111421;
+            --text: #f8f5ee;
+            --muted: #bfb8a6;
+            --soft: #e6d9bd;
+            --line: rgba(255, 255, 255, 0.16);
+            --code-bg: #161a23;
+            --code-inline: #ffd78a;
+            --shadow: rgba(0, 0, 0, 0.55);
+            --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            background:
+                radial-gradient(circle at 20% 10%, rgba(168, 104, 255, 0.25), transparent 18%),
+                radial-gradient(circle at 80% 0%, rgba(249, 184, 95, 0.16), transparent 22%),
+                var(--page-bg);
+            color: var(--text);
+            font-family: var(--font);
+            line-height: 1.7;
+            margin: 0;
+        }
+
+        main {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 16px;
+        }
+
+        .container {
+            width: min(940px, calc(100vw - 32px));
+            background: rgba(17, 20, 33, 0.78);
+            border: 1px solid var(--line);
+            border-radius: 26px;
+            box-shadow: 0 30px 80px var(--shadow);
+            backdrop-filter: blur(12px);
+            margin: 0 auto;
+            padding: clamp(28px, 5vw, 56px);
+        }
+
+        h1 {
+            font-size: clamp(2.4rem, 4vw, 3.5rem);
+            margin: 0 0 14px;
+            line-height: 1.18;
+            letter-spacing: -0.04em;
+            color: var(--text);
+        }
+
+        h2 {
+            font-size: clamp(1.6rem, 2vw, 2rem);
+            margin: 36px 0 12px;
+            line-height: 1.35;
+            color: var(--soft);
+        }
+
+        h3 {
+            font-size: 1.25rem;
+            margin-top: 30px;
+            margin-bottom: 10px;
+            color: var(--soft);
+        }
+
+        p {
+            margin: 0 0 20px;
+            color: var(--muted);
+        }
+
+        strong {
+            color: var(--soft);
+            font-weight: 700;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid var(--line);
+            margin: 34px 0;
+        }
+
+        img,
+        video {
+            display: block;
+            width: 100%;
+            max-width: 100%;
+            height: auto;
+            border-radius: 14px;
+            border: 1px solid var(--line);
+            margin: 20px 0 24px;
+            background: var(--code-bg);
+        }
+
+        a {
+            color: var(--soft);
+        }
+
+        ul {
+            color: var(--muted);
+            padding-left: 22px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        code {
+            font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+            background: var(--code-bg);
+            color: var(--code-inline);
+            padding: 0.2rem 0.45rem;
+            border-radius: 6px;
+            font-size: 0.92em;
+            border: 1px solid var(--line);
+        }
+
+        pre {
+            background: var(--code-bg);
+            color: var(--text);
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            padding: 1rem 1.1rem;
+            overflow-x: auto;
+            margin: 1.4rem 0;
+            box-shadow: inset 0 0 30px rgba(255,255,255,0.03);
+        }
+
+        pre code {
+            background: transparent;
+            border: none;
+            padding: 0;
+            color: var(--text);
+            white-space: pre;
+        }
+
+        .code-block {
+            position: relative;
+            margin: 0 0 24px;
+        }
+
+        .code-copy {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            z-index: 2;
+            padding: 0.45rem 0.8rem;
+            background: var(--text);
+            color: #000;
+            border-radius: 999px;
+            border: 1px solid var(--text);
+            font-size: 0.75rem;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: background 180ms ease, color 180ms ease, transform 180ms ease;
+        }
+
+        .code-copy:hover {
+            background: transparent;
+            color: var(--text);
+        }
+
+        .code-copy.copied {
+            background: #9effb7;
+            color: #092d16;
+            border-color: #9effb7;
+        }
+
+        .flex {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .gap-4 {
+            gap: 1rem;
+        }
+
+        .align-center {
+            align-items: center;
+        }
+
+        .justify-center {
+            justify-content: center;
+        }
+
+        .bg-white {
+            background-color: #fff;
+            color: #000;
+        }
+
+        .p-4 {
+            padding: 1rem;
+        }
+
+        .mt-4 {
+            margin-top: 1rem;
+        }
+
+        .rounded {
+            border-radius: 0.5rem;
+        }
+
+        .col {
+            flex: 1;
+        }
+
+        .circle {
+            width: 5px;
+            height: 5px;
+            background-color: var(--text);
+            border-radius: 50%;
+        }
+
+        .pill {
+            padding: 0.25rem 0.75rem;
+            background-color: var(--text);
+            color: #000;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            text-align: center;
+            width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .button {
+            display: block;
+            width: 100%;
+            padding: 0.75rem 0;
+            background-color: var(--text);
+            color: #000;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 0.5rem;
+            font-weight: bold;
+            margin-top: 1rem;
+            transition: all 0.3s ease;
+            border: 1px solid var(--text);
+        }
+
+        .button:hover {
+            background-color: transparent;
+            color: var(--text);
+            border: 1px solid var(--text);
+        }
+
+        .border-white {
+            border: 1px solid var(--text);
+        }
+
+        .feature-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .feature-list li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .feature-list li input[type="checkbox"] {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <main>
+    <div class="container">
+    <h1>How to Implement Scratch&Win Pop-Up</h1>
+    <p>Thank you for your purchase! Here's the full guide.</p>
+    <hr>
+    <img src="https://cdn.shopify.com/s/files/1/1018/4402/5642/files/Screenshot_2026-09-11_alle_18.50.54.png?v=1789147141" alt="Scratch&Win Pop-Up Example" style="max-width: 100%; height: auto; margin-bottom: 20px;">
+    <h2>Step 1: Create a new Full-Screen Form on Klaviyo</h2>
+    <p>Create a form from scratch, select the "Full Screen" option, and select your email list.</p>
+    <hr>
+    <video autoplay loop muted playsinline style="max-width: 100%; height: auto; margin-bottom: 20px;">
+        <source src="https://cdn.shopify.com/videos/c/o/v/fb0229dc696e40b39a5a31138d02b67b.mov" type="video/mp4">
+        Your browser does not support the video tag.    
+    </video>
+    <h2>Step 2: Create a blank step</h2>
+    <p>Create a new blank step in your Klaviyo form and place it as the first step.</p>
+    <hr>
+    <video autoplay loop muted playsinline style="max-width: 100%; height: auto; margin-bottom: 20px;">
+        <source src="https://cdn.shopify.com/videos/c/o/v/026f2f4299104792bef53e6d33d2fdff.mov" type="video/mp4">
+        Your browser does not support the video tag.    
+    </video>
+    <h2>Step 3: Add an HTML element</h2>
+    <p>In the blank step, add an HTML element with the following structure:</p>
+    <div class="code-block">
+      <button class="code-copy" type="button">Copy</button>
+      <pre><code>&lt;div class="lb-scratch" role="group" aria-label="Scratch card"&gt;
+    &lt;p class="lb-scratch__prize"&gt;10% DI SCONTO&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+    </div>
+    <p>Change the prize text as needed.</p>
+    <hr>
+    <video autoplay loop muted playsinline style="max-width: 100%; height: auto; margin-bottom: 20px;">
+        <source src="https://cdn.shopify.com/videos/c/o/v/66a819d6084a4a47838668abdbee0701.mov" type="video/mp4">
+        Your browser does not support the video tag.    
+    </video>
+    <h2>Step 3: Add custom CSS</h2>
+    <p>In the styling panel, scroll down to the "Custom CSS" section, enable it, and add the following CSS:</p>
+    <div class="code-block">
+      <button class="code-copy" type="button">Copy</button>
+      <pre><code>form.klaviyo-form {
+  --lb-bg-from: INSERT YOUR START COLOR HERE;
+  --lb-bg-to: INSERT YOUR END COLOR HERE;
+  --lb-price-text: INSERT YOUR PRIZE TEXT COLOR HERE;
+
+  --lb-img-left: url('INSERT YOUR LEFT IMAGE URL HERE');
+  --lb-img-left-rotation: 10deg;
+
+  --lb-img-right: url('INSERT YOUR RIGHT IMAGE URL HERE');
+  --lb-img-right-rotation: -20deg;
+}
+
+.lb-scratch {
+  position: relative;
+  width: 300px;
+  max-width: 100%;
+  height: 220px;
+  margin: 0 auto;
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  text-align: center;
+  user-select: none;
+  background: #fff;
+  animation: lb-pop .6s cubic-bezier(.2,.7,.3,1) .4s both;
+}
+
+.lb-scratch__prize {
+  color: var(--lb-price-text);
+  margin: 0;
+  font-family: Barlow, sans-serif;
+  font-weight: 700;
+  font-size: 50px;
+  line-height: 1;
+}
+
+form.klaviyo-form {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden !important;
+  background: linear-gradient(to top, var(--lb-bg-from) 0%, var(--lb-bg-to) 100%) !important;
+}</code></pre>
+    </div>
+    <hr>
+    <video autoplay loop muted playsinline style="max-width: 100%; height: auto; margin-bottom: 20px;">
+        <source src="https://cdn.shopify.com/videos/c/o/v/e7f9f28d95e2405994422d59888c3e5b.mov" type="video/mp4">
+        Your browser does not support the video tag.    
+    </video>
+    <h2>Step 4: Customize your CSS</h2>
+    <p>Adjust values in the CSS variables below following the instructions:</p>
+    <ul>
+        <li><strong>--lb-bg-from:</strong> The starting color of the gradient background</li>
+        <li><strong>--lb-bg-to:</strong> The ending color of the gradient background</li>
+        <li><strong>--lb-price-text:</strong> The color of the prize text</li>
+        <li><strong>--lb-img-left:</strong> The URL of the left image</li>
+        <li><strong>--lb-img-left-rotation:</strong> The rotation angle of the left image (in degrees)</li>
+        <li><strong>--lb-img-right:</strong> The URL of the right image</li>
+        <li><strong>--lb-img-right-rotation:</strong> The rotation angle of the right image (in degrees)</li>
+    </ul>
+    <p><strong>TIP:</strong> Upload your images in your Shopify media library and use the URLs here for better performance. Use square PNG images for best results.</p>
+    <hr>
+    <video autoplay loop muted playsinline style="max-width: 100%; height: auto; margin-bottom: 20px;">
+        <source src="https://cdn.shopify.com/videos/c/o/v/82da0b6863714458a87c881c10ad7155.mov" type="video/mp4">
+        Your browser does not support the video tag.    
+    </video>
+    <h2>Step 5: Add the right class to the claim button</h2>
+    <p>Select the claim button and replace the existing class with <code>lb-claim</code>.</p>
+    <hr>
+    <video autoplay loop muted playsinline style="max-width: 100%; height: auto; margin-bottom: 20px;">
+        <source src="https://cdn.shopify.com/videos/c/o/v/1f0a096f9a2c4fd3b6849cc9197e97bd.mov" type="video/mp4">
+        Your browser does not support the video tag.    
+    </video>
+    <h2>Step 6: Add the script in your Shopify store</h2>
+    <ul>
+        <li>Go to your Shopify admin panel</li>
+        <li>Navigate to "Online Store" > "Themes"</li>
+        <li>On the live theme, click on "Actions" > "Edit code"</li>
+        <li>In the left sidebar, find and click on "theme.liquid" under the "Layout" section</li>
+        <li>Scroll down to the closing <code>&lt;/body&gt;</code> tag and paste your unique script.</li>
+    </ul>
+    <p>Here's your unique script:</p>
+    <div id="lb-install">
+  <p id="lb-status">Stiamo generando la tua licenza…</p>
+  <pre id="lb-code" hidden><code></code></pre>
+  <button id="lb-copy" type="button" hidden>Copy Code</button>
+</div>
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  const cid = new URLSearchParams(location.search).get('cid');
+  if (!cid) { $('lb-status').textContent = 'Link non valido: trovi il codice nell\'email di conferma.'; return; }
+
+  let tries = 0;
+  const poll = async () => {
+    try {
+      const r = await fetch('https://scratchwin.biondi.dev/claim?cid=' + encodeURIComponent(cid));
+      const d = await r.json();
+      if (d.status === 'ready') {
+        const tag = '<script src="https://scratchwin.biondi.dev/v1/' + d.key + '.js" defer><\/script>';
+        $('lb-status').textContent = 'Licenza attiva per ' + d.domain + '. Inserisci questo codice prima di </body>:';
+        $('lb-code').querySelector('code').textContent = tag;
+        $('lb-code').hidden = false;
+        $('lb-copy').hidden = false;
+        $('lb-copy').onclick = () => navigator.clipboard.writeText(tag).then(() => { $('lb-copy').textContent = 'Copiato ✓'; });
+        return;
+      }
+      if (d.status === 'invalid') { $('lb-status').textContent = 'Link non valido.'; return; }
+    } catch (_) {}
+    if (++tries < 45) setTimeout(poll, 2000);
+    else $('lb-status').textContent = 'La licenza è in lavorazione: ti arriverà via email entro qualche minuto.';
+  };
+  poll();
+})();
+</script>
+<script>
+(() => {
+  const buttons = [...document.querySelectorAll('.code-copy')];
+
+  buttons.forEach((button) => {
+    button.addEventListener('click', async () => {
+      const block = button.closest('.code-block');
+      const code = block ? block.querySelector('code') : null;
+      const text = code ? code.innerText : '';
+
+      try {
+        await navigator.clipboard.writeText(text);
+        button.textContent = 'Copied';
+        button.classList.add('copied');
+        setTimeout(() => {
+          button.textContent = 'Copy';
+          button.classList.remove('copied');
+        }, 1400);
+      } catch (error) {
+        button.textContent = 'Copy failed';
+        setTimeout(() => {
+          button.textContent = 'Copy';
+        }, 1400);
+      }
+    });
+  });
+})();
+</script>
+    <p>Remember: your script is unique to your store domain. If you wrote the wrong store domain, contact me at luca@lucabiondi.com to fix it.</p>
+    <hr>
+    <h3>Enjoy your new Pop-Up!</h3>
+    <em>Luca</em>
+    </div>
+    </main>
+</body>
+</html>
