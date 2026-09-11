@@ -410,7 +410,7 @@ form.klaviyo-form {
     </ul>
     <p>Here's your unique script:</p>
     <div id="lb-install">
-  <p id="lb-status">Stiamo generando la tua licenza…</p>
+  <p id="lb-status">We're still generating your license…</p>
   <pre id="lb-code" hidden><code></code></pre>
   <button id="lb-copy" type="button" hidden>Copy Code</button>
 </div>
@@ -418,7 +418,7 @@ form.klaviyo-form {
 (() => {
   const $ = id => document.getElementById(id);
   const cid = new URLSearchParams(location.search).get('cid');
-  if (!cid) { $('lb-status').textContent = 'Link non valido: trovi il codice nell\'email di conferma.'; return; }
+  if (!cid) { $('lb-status').textContent = 'Invalid link: find the code in the confirmation email.'; return; }
 
   let tries = 0;
   const poll = async () => {
@@ -427,17 +427,17 @@ form.klaviyo-form {
       const d = await r.json();
       if (d.status === 'ready') {
         const tag = '<script src="https://scratchwin.biondi.dev/v1/' + d.key + '.js" defer><\/script>';
-        $('lb-status').textContent = 'Licenza attiva per ' + d.domain + '. Inserisci questo codice prima di </body>:';
+        $('lb-status').textContent = 'Active license for ' + d.domain;
         $('lb-code').querySelector('code').textContent = tag;
         $('lb-code').hidden = false;
         $('lb-copy').hidden = false;
-        $('lb-copy').onclick = () => navigator.clipboard.writeText(tag).then(() => { $('lb-copy').textContent = 'Copiato ✓'; });
+        $('lb-copy').onclick = () => navigator.clipboard.writeText(tag).then(() => { $('lb-copy').textContent = 'Copied ✓'; });
         return;
       }
-      if (d.status === 'invalid') { $('lb-status').textContent = 'Link non valido.'; return; }
+      if (d.status === 'invalid') { $('lb-status').textContent = 'Invalid link.'; return; }
     } catch (_) {}
     if (++tries < 45) setTimeout(poll, 2000);
-    else $('lb-status').textContent = 'La licenza è in lavorazione: ti arriverà via email entro qualche minuto.';
+    else $('lb-status').textContent = 'The license is being processed: you will receive it via email within a few minutes.';
   };
   poll();
 })();
