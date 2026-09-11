@@ -289,16 +289,63 @@
         }
 
         .hero-copy {
-            animation: riseIn 640ms ease both;
+            overflow-x: clip;
         }
 
-        .feature-list li {
-            animation: riseIn 560ms ease both;
+        h1 {
+            overflow-wrap: break-word;
         }
 
-        .feature-list li:nth-child(2) { animation-delay: 80ms; }
-        .feature-list li:nth-child(3) { animation-delay: 160ms; }
-        .feature-list li:nth-child(4) { animation-delay: 240ms; }
+        .scratch-reveal {
+            max-width: 100%;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            will-change: transform, opacity;
+        }
+
+        .floating-cta {
+            position: fixed;
+            left: 50%;
+            bottom: 20px;
+            transform: translate(-50%, 120%);
+            width: min(360px, calc(100vw - 32px));
+            padding: 0.85rem 1.4rem;
+            background: linear-gradient(135deg, var(--text), var(--soft));
+            color: #000;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 999px;
+            font-weight: 800;
+            font-size: 0.95rem;
+            letter-spacing: 0.04em;
+            border: 1px solid var(--text);
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5), 0 0 30px rgba(230, 217, 189, 0.12);
+            z-index: 100;
+            opacity: 0;
+            pointer-events: none;
+            transition: transform 380ms cubic-bezier(.2,.7,.2,1), opacity 300ms ease;
+        }
+
+        .floating-cta.is-visible {
+            transform: translate(-50%, 0);
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .floating-cta:hover {
+            transform: translate(-50%, -3px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.55), 0 0 40px rgba(230, 217, 189, 0.2);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .reveal {
+                opacity: 1;
+                transform: none;
+            }
+        }
 
         .comparison-section {
             width: min(940px, calc(100vw - 32px));
@@ -458,14 +505,96 @@
             border-top: 1px solid var(--line);
         }
 
-        @keyframes riseIn {
-            from {
-                opacity: 0;
-                transform: translateY(12px);
+        .scratch-reveal {
+            position: relative;
+            display: inline-block;
+            padding: 0 .08em;
+            color: var(--text);
+            background: linear-gradient(135deg, #ffd78a 0%, #f9b85f 40%, #e6d9bd 70%, #ffe7b0 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: var(--text);
+            transition: -webkit-text-fill-color 500ms ease, color 500ms ease;
+            isolation: isolate;
+        }
+
+        .scratch-reveal.is-revealed {
+            -webkit-text-fill-color: transparent;
+            color: transparent;
+        }
+
+        .scratch-reveal .brush-svg {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: visible;
+        }
+
+        .scratch-reveal .brush-overlay {
+            fill: url(#brush-gradient);
+        }
+
+        .scratch-reveal .particles {
+            position: absolute;
+            inset: -30% -6%;
+            width: 112%;
+            height: 160%;
+            pointer-events: none;
+            overflow: visible;
+        }
+
+        .scratch-reveal .particles circle {
+            opacity: 0;
+        }
+
+        .scratch-reveal .shine {
+            position: absolute;
+            inset: 0;
+            padding: 0 .08em;
+            background: linear-gradient(105deg,
+                transparent 30%,
+                rgba(255,255,255,0.85) 48%,
+                rgba(255,231,176,0.6) 52%,
+                transparent 70%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: transparent;
+            pointer-events: none;
+            opacity: 0;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .scratch-reveal .brush-svg,
+            .scratch-reveal .particles,
+            .scratch-reveal .shine {
+                display: none;
             }
-            to {
+        }
+
+        .arrow-point {
+            animation: arrowPoint 1.4s ease-in-out infinite;
+            transform-origin: center;
+            will-change: transform, opacity;
+        }
+
+        @keyframes arrowPoint {
+            0%, 100% {
+                transform: translate(-3px, 3px) rotate(170deg);
+                opacity: 0.85;
+            }
+            50% {
+                transform: translate(3px, -3px) rotate(170deg);
                 opacity: 1;
-                transform: translateY(0);
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .arrow-point {
+                animation: none;
             }
         }
     </style>
@@ -473,19 +602,66 @@
 <body>
     <main>
         <div class="container">
-            <div class="pill">For Shopify stores only</div>
-            <div class="hero-copy">
-                <h1 class="text-center">Turn your Klaviyo pop-up into a Scratch & Win</h1>
+            <div class="pill reveal">For Shopify stores only</div>
+            <div class="hero-copy reveal">
+                <h1 class="text-center">Turn your Klaviyo pop-up into a <span class="scratch-reveal">
+                    Scratch & Win
+                    <svg class="brush-svg" aria-hidden="true" viewBox="0 0 400 100" preserveAspectRatio="none">
+                        <defs>
+                            <linearGradient id="brush-gradient" x1="0" y1="0" x2="1" y2="1">
+                                <stop offset="0%" stop-color="#6b6a66"/>
+                                <stop offset="30%" stop-color="#9a978f"/>
+                                <stop offset="55%" stop-color="#c9c5b8"/>
+                                <stop offset="80%" stop-color="#7d7b74"/>
+                                <stop offset="100%" stop-color="#a8a49a"/>
+                            </linearGradient>
+                            <mask id="brush-mask" maskUnits="userSpaceOnUse">
+                                <rect width="400" height="100" fill="white"/>
+                                <g class="brush-strokes" fill="none" stroke="black" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M -10 96 C 60 78, 90 72, 140 58 S 240 44, 300 30 S 380 14, 410 6" stroke-width="88"/>
+                                </g>
+                            </mask>
+                        </defs>
+                        <rect class="brush-overlay" width="400" height="100" fill="url(#brush-gradient)" mask="url(#brush-mask)"/>
+                    </svg>
+                    <svg class="particles" aria-hidden="true" viewBox="0 0 400 100" preserveAspectRatio="none">
+                        <g class="particle-group">
+                            <circle cx="40" cy="88" r="1.8" fill="#ffd78a"/>
+                            <circle cx="70" cy="72" r="1.4" fill="#ffe7b0"/>
+                            <circle cx="95" cy="82" r="1.2" fill="#f9b85f"/>
+                            <circle cx="120" cy="60" r="1.6" fill="#ffd78a"/>
+                            <circle cx="150" cy="70" r="1.3" fill="#e6d9bd"/>
+                            <circle cx="180" cy="48" r="1.7" fill="#ffe7b0"/>
+                            <circle cx="205" cy="58" r="1.2" fill="#ffffff"/>
+                            <circle cx="230" cy="38" r="1.6" fill="#f9b85f"/>
+                            <circle cx="260" cy="46" r="1.3" fill="#ffd78a"/>
+                            <circle cx="290" cy="28" r="1.5" fill="#ffe7b0"/>
+                            <circle cx="320" cy="34" r="1.2" fill="#e6d9bd"/>
+                            <circle cx="345" cy="18" r="1.7" fill="#ffd78a"/>
+                            <circle cx="370" cy="24" r="1.3" fill="#f9b85f"/>
+                            <circle cx="55" cy="60" r="1.1" fill="#ffe7b0"/>
+                            <circle cx="140" cy="42" r="1.1" fill="#ffd78a"/>
+                            <circle cx="245" cy="20" r="1.1" fill="#ffe7b0"/>
+                        </g>
+                    </svg>
+                    <span class="shine" aria-hidden="true">Scratch & Win</span>
+                </span></h1>
                 <p class="text-center">Boost sign-ups with a game your visitors actually want to play — powered by the Klaviyo forms you already pay for. No extra app, no monthly fee.</p>
+                <img src="https://cdn.shopify.com/s/files/1/1018/4402/5642/files/Screenshot_2026-09-12_alle_00.44.11.png?v=1789166970" alt="Scratch & Win example" style="width: 100%; display: block; margin: 0 auto; border-radius: 12px; box-shadow: 0 20px 60px rgba(0,0,0,0.4);">
             </div>
-                <ul class="feature-list">
+                <ul class="feature-list reveal">
                     <li><span class="check-icon"><svg class="check-mark" viewBox="0 0 24 24"><path d="M5 12l4 4L19 6" /></svg></span>Runs inside your existing Klaviyo form (paid plan required)</li>
                     <li><span class="check-icon"><svg class="check-mark" viewBox="0 0 24 24"><path d="M5 12l4 4L19 6" /></svg></span>Install in minutes — paste one line of code, no dev needed</li>
                     <li><span class="check-icon"><svg class="check-mark" viewBox="0 0 24 24"><path d="M5 12l4 4L19 6" /></svg></span>All submissions and analytics stay native in Klaviyo</li>
                     <li><span class="check-icon"><svg class="check-mark" viewBox="0 0 24 24"><path d="M5 12l4 4L19 6" /></svg></span>One-time payment, lifetime license — one domain per license</li>
                 </ul>
-            <button onclick="window._klOnsite = window._klOnsite || []; window._klOnsite.push(['openForm', 'XjT92x']);" class="button button--dark" style="cursor: pointer;">See it in Action</button>
-            <div class="flex gap-4 align-center justify-center border-white p-4 mt-4 rounded">
+            <div class="reveal" style="position:relative">
+                <img class="arrow-point" src="https://cdn.shopify.com/s/files/1/1018/4402/5642/files/CITYPNG.COM_HD_White_Line_Arrow_PNG_-_1000x1000_4c3e9dd0-bf39-458a-a760-f10c6b30aadd.png?v=1789167444" alt="Arrow pointing to button" style="position:absolute; top:-70px; right:-10px; width: 60px; height: auto; z-index: 1; pointer-events: none;">
+                <button onclick="window._klOnsite = window._klOnsite || []; window._klOnsite.push(['openForm', 'XjT92x']);" class="button button--dark" style="cursor: pointer;">See it in Action</button>
+            </div>
+            <a id="main-cta" class="button reveal" href="https://buy.stripe.com/aFa3cw1bo62c3AQdv08Vi00?prefilled_promo_code=EARLYACCESS" target="_blank">Get it now — <s>€29</s> €19</a>
+            <div class="reveal" style="text-align: center; margin-top: .5rem; color: var(--muted);">Early bird special · only 10 licenses left</div>
+            <div class="flex gap-4 align-center justify-center border-white p-4 mt-4 rounded reveal">
                 <div class="col">
                     <h2 style="margin-top: 0;">What you'll get</h2>
                     <p>1. The full customization code, ready to drop in.</p>
@@ -493,13 +669,11 @@
                     <p>3. A lifetime license for one domain, with free updates.</p>
                 </div>
             </div>
-            <a class="button" href="https://buy.stripe.com/aFa3cw1bo62c3AQdv08Vi00?prefilled_promo_code=EARLYACCESS" target="_blank">Get it now — <s>€29</s> €19</a>
-            <div style="text-align: center; margin-top: .5rem; color: var(--muted);">Early bird special · only 10 licenses left</div>
 
         </div>
     </main>
 
-    <section class="comparison-section">
+    <section class="comparison-section reveal">
         <h2>How we compare</h2>
         <table class="compare-table">
             <thead>
@@ -579,37 +753,37 @@
         </table>
     </section>
 
-    <section class="faq-section">
+    <section class="faq-section reveal">
         <h2>FAQ</h2>
-        <div class="faq-item">
+        <div class="faq-item reveal">
             <p class="faq-question">How does it work?</p>
             <p class="faq-answer">You add one line of code to your Shopify theme. It turns a standard Klaviyo full-screen pop-up into an interactive Scratch & Win experience — everything else (targeting, rewards, email capture, flows) is configured in Klaviyo, the way you already know.</p>
         </div>
-        <div class="faq-item">
+        <div class="faq-item reveal">
             <p class="faq-question">Do I need a developer?</p>
             <p class="faq-answer">No. If you can paste a snippet into your Shopify theme, you can install it. The step-by-step guide walks you through it in under 10 minutes.</p>
         </div>
-        <div class="faq-item">
+        <div class="faq-item reveal">
             <p class="faq-question">Do I still get all my Klaviyo analytics?</p>
             <p class="faq-answer">Yes. It's a native Klaviyo pop-up, so submissions, conversion rates, and every metric you already track stay exactly where they are.</p>
         </div>
-        <div class="faq-item">
+        <div class="faq-item reveal">
             <p class="faq-question">Does the code collect any customer data?</p>
             <p class="faq-answer">No. The script only handles the Scratch & Win interaction on your visitor's screen — no tracking, no analytics, no data sent to third parties. Every submission goes straight to Klaviyo, exactly like a standard pop-up. GDPR-friendly by design.</p>
         </div>
-        <div class="faq-item">
+        <div class="faq-item reveal">
             <p class="faq-question">Can I use one license on multiple stores?</p>
             <p class="faq-answer">No — each license is generated for a single store domain. If you run more than one store, you'll need one license per domain.</p>
         </div>
-        <div class="faq-item">
+        <div class="faq-item reveal">
             <p class="faq-question">Do you offer volume discounts?</p>
             <p class="faq-answer">Yes, for agencies and multi-store owners. Email me at <a href="mailto:luca@lucabiondi.com">luca@lucabiondi.com</a> and I'll send you a custom quote.</p>
         </div>
-        <div class="faq-item">
+        <div class="faq-item reveal">
             <p class="faq-question">What's your refund policy?</p>
             <p class="faq-answer">Sales are final. Each license is tied to your specific domain at purchase, so refunds aren't possible. If something isn't working, email me — I'll help you get it running.</p>
         </div>
-        <div class="faq-item">
+        <div class="faq-item reveal">
             <p class="faq-question">Still have questions?</p>
             <p class="faq-answer">Reach out at <a href="mailto:luca@lucabiondi.com">luca@lucabiondi.com</a> — I answer every message personally.</p>
         </div>
@@ -620,13 +794,142 @@
     <script async type='text/javascript' src='https://static.klaviyo.com/onsite/js/TaMmC3/klaviyo.js?company_id=TaMmC3'></script>
     <script type="text/javascript">!function(){if(!window.klaviyo){window._klOnsite=window._klOnsite||[];try{window.klaviyo=new Proxy({},{get:function(n,i){return"push"===i?function(){var n;(n=window._klOnsite).push.apply(n,arguments)}:function(){for(var n=arguments.length,o=new Array(n),w=0;w<n;w++)o[w]=arguments[w];var t="function"==typeof o[o.length-1]?o.pop():void 0,e=new Promise((function(n){window._klOnsite.push([i].concat(o,[function(i){t&&t(i),n(i)}]))}));return e}}})}catch(n){window.klaviyo=window.klaviyo||[],window.klaviyo.push=function(){var n;(n=window._klOnsite).push.apply(n,arguments)}}}}(); </script>
 
-    <footer class="site-footer">
+    <footer class="site-footer reveal">
         <span id="copyright-year"></span> Luca Biondi - All rights reserved.
     </footer>
+
+    <a class="floating-cta" href="https://buy.stripe.com/aFa3cw1bo62c3AQdv08Vi00?prefilled_promo_code=EARLYACCESS" target="_blank" aria-label="Get it now for €19">Get it now — <s>€29</s> €19</a>
 
     <script>
         const year = new Date().getFullYear();
         document.getElementById('copyright-year').textContent = '© ' + year + ' ';
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+    <script>
+        (function () {
+            if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+            const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+            gsap.registerPlugin(ScrollTrigger);
+
+            if (!reduced) {
+                document.querySelectorAll('.reveal').forEach((el) => {
+                    gsap.to(el, {
+                        opacity: 1,
+                        y: 0,
+                        duration: 0.7,
+                        ease: 'power2.out',
+                        scrollTrigger: {
+                            trigger: el,
+                            start: 'top 88%',
+                            toggleActions: 'play none none none',
+                        },
+                    });
+                });
+            } else {
+                document.querySelectorAll('.reveal').forEach((el) => {
+                    el.style.opacity = 1;
+                    el.style.transform = 'none';
+                });
+            }
+
+            // Floating CTA: appears only after user has scrolled past the main CTA.
+            const mainCta = document.getElementById('main-cta');
+            const floatingCta = document.querySelector('.floating-cta');
+            if (mainCta && floatingCta) {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach((entry) => {
+                        const rect = entry.boundingClientRect;
+                        // Show only when the main CTA has scrolled ABOVE the viewport.
+                        const scrolledPast = !entry.isIntersecting && rect.top < 0;
+                        floatingCta.classList.toggle('is-visible', scrolledPast);
+                    });
+                }, { threshold: 0, rootMargin: '0px' });
+                observer.observe(mainCta);
+            }
+        })();
+    </script>
+    <script>
+        (function () {
+            if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+            if (typeof gsap === 'undefined') return;
+
+            const scratchEl = document.querySelector('.scratch-reveal');
+            if (!scratchEl) return;
+
+            const strokes = scratchEl.querySelectorAll('.brush-strokes path');
+            const overlay = scratchEl.querySelector('.brush-overlay');
+            const particles = scratchEl.querySelectorAll('.particles circle');
+            const shine = scratchEl.querySelector('.shine');
+
+            // Prepare each brush stroke: measure length and hide it via dashoffset.
+            strokes.forEach((path) => {
+                const len = path.getTotalLength();
+                path.style.strokeDasharray = len;
+                path.style.strokeDashoffset = len;
+            });
+
+            gsap.set(overlay, { opacity: 1 });
+            gsap.set(particles, { opacity: 0, scale: 0.4, transformOrigin: '50% 50%' });
+            gsap.set(shine, { opacity: 0, xPercent: -40 });
+
+            const tl = gsap.timeline({ delay: 0.4 });
+
+            // Single swooping brush stroke, sw → ne. CustomWiggle-like ease via
+            // a hand-picked cubic — starts snappy, hesitates mid-way, finishes fast.
+            const brush = strokes[0];
+            tl.to(brush, {
+                strokeDashoffset: 0,
+                duration: 0.75,
+                ease: 'power2.inOut',
+            });
+
+            // As soon as the stroke finishes: swap white → gold, fade overlay away.
+            tl.add(() => scratchEl.classList.add('is-revealed'), '-=0.05');
+            tl.to(overlay, {
+                opacity: 0,
+                duration: 0.35,
+                ease: 'power1.out',
+            }, '<');
+
+            // Particles trail behind the brush stroke, left → right.
+            const orderedParticles = Array.from(particles).sort((a, b) => {
+                return parseFloat(a.getAttribute('cx')) - parseFloat(b.getAttribute('cx'));
+            });
+
+            tl.to(orderedParticles, {
+                opacity: 1,
+                scale: 1,
+                duration: 0.25,
+                ease: 'power2.out',
+                stagger: 0.03,
+            }, 0.05);
+
+            tl.to(orderedParticles, {
+                opacity: 0,
+                y: -20,
+                scale: 1.6,
+                duration: 0.7,
+                ease: 'power1.out',
+                stagger: 0.025,
+            }, '-=0.15');
+
+            // Final shine sweep across the revealed gold text.
+            tl.to(shine, {
+                opacity: 1,
+                xPercent: 0,
+                duration: 0.35,
+                ease: 'power1.out',
+            }, '-=0.3')
+            .to(shine, {
+                opacity: 0,
+                xPercent: 40,
+                duration: 0.5,
+                ease: 'power1.in',
+            });
+        })();
     </script>
 </body>
 </html>
