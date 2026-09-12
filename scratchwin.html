@@ -459,6 +459,149 @@
             font-weight: 500;
         }
 
+        .warranty-section {
+            width: min(940px, calc(100vw - 32px));
+            margin: 24px auto 0;
+            padding: 26px 0 0;
+            border-top: 1px solid var(--line);
+        }
+
+        .warranty-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 36px;
+            align-items: center;
+        }
+
+        .warranty-media {
+            position: relative;
+            aspect-ratio: 1 / 1;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid var(--line);
+            background:
+                radial-gradient(circle at 30% 20%, rgba(255,215,138,0.18), transparent 55%),
+                radial-gradient(circle at 80% 90%, rgba(168,104,255,0.14), transparent 55%),
+                #0e1220;
+        }
+
+        .warranty-media img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .warranty-badge {
+            position: absolute;
+            top: 14px;
+            right: 14px;
+            width: 92px;
+            height: 92px;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.55);
+            border: 1px solid var(--line);
+            backdrop-filter: blur(6px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .warranty-badge__ring {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            animation: badgeSpin 12s linear infinite;
+        }
+
+        .warranty-badge__ring text {
+            fill: var(--soft);
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.28em;
+            text-transform: uppercase;
+        }
+
+        .warranty-badge__dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #b8e0a8;
+            box-shadow: 0 0 10px #b8e0a8, 0 0 20px rgba(184, 224, 168, 0.4);
+            animation: badgePulse 1.8s ease-in-out infinite;
+        }
+
+        @keyframes badgeSpin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes badgePulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.25); opacity: 0.75; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .warranty-badge__ring,
+            .warranty-badge__dot {
+                animation: none;
+            }
+        }
+
+        .warranty-content h2 {
+            margin-top: 0;
+            color: var(--soft);
+        }
+
+        .warranty-content p {
+            font-size: 1rem;
+        }
+
+        .warranty-stats {
+            display: flex;
+            gap: 24px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid var(--line);
+        }
+
+        .warranty-stat {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .warranty-stat strong {
+            font-size: 1.6rem;
+            color: var(--text);
+            font-weight: 800;
+            letter-spacing: -0.02em;
+        }
+
+        .warranty-stat span {
+            font-size: 0.82rem;
+            color: var(--muted);
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+
+        .warranty-sign {
+            font-family: 'Snell Roundhand', 'Brush Script MT', 'Segoe Script', cursive;
+            font-size: 1.5rem;
+            color: var(--soft);
+            margin-top: 18px;
+            display: inline-block;
+        }
+
+        @media (max-width: 720px) {
+            .warranty-grid {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+        }
+
         .faq-section {
             width: min(940px, calc(100vw - 32px));
             margin: 24px auto 0;
@@ -751,6 +894,42 @@
                 </tr>
             </tbody>
         </table>
+    </section>
+
+    <section class="warranty-section reveal">
+        <div class="warranty-grid">
+            <div class="warranty-media">
+                <span class="warranty-badge" aria-label="100% Human-Made, no AI slop">
+                    <svg class="warranty-badge__ring" viewBox="0 0 100 100" aria-hidden="true">
+                        <defs>
+                            <path id="badge-circle" d="M 50,50 m -36,0 a 36,36 0 1,1 72,0 a 36,36 0 1,1 -72,0"/>
+                        </defs>
+                        <text><textPath href="#badge-circle" startOffset="0">100% Human-Made</textPath></text>
+                    </svg>
+                    <span class="warranty-badge__dot" aria-hidden="true"></span>
+                </span>
+                <img src="https://cdn.shopify.com/s/files/1/1018/4402/5642/files/DSC02379.webp?v=1789209873" alt="Luca Biondi at his desk" onerror="this.style.display='none'">
+            </div>
+            <div class="warranty-content">
+                <h2 style="margin-top: 0;">Human warranty</h2>
+                <p>Every line of code in this product is written by me — not spun out by an AI wrapper, not copy-pasted from a generator. It's the exact same script I've deployed and battle-tested on <strong>100+ Shopify stores</strong> running real Klaviyo campaigns and real revenue.</p>
+                <p>If something breaks or behaves oddly on your setup, you email me and I look at it personally. No ticket queue, no chatbot in the middle.</p>
+                <div class="warranty-stats">
+                    <div class="warranty-stat">
+                        <strong>100+</strong>
+                        <span>Live Stores</span>
+                    </div>
+                    <div class="warranty-stat">
+                        <strong>0</strong>
+                        <span>AI Slop</span>
+                    </div>
+                    <div class="warranty-stat">
+                        <strong>1:1</strong>
+                        <span>Support</span>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 
     <section class="faq-section reveal">
