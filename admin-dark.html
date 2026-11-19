@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dark Mode for Shopify Admin — Luca Biondi</title>
+<meta name="description" content="Estensione Chrome gratuita che porta l'admin Shopify in modalità scura usando la palette dark nativa di Polaris.">
+<meta property="og:title" content="Dark Mode for Shopify Admin">
+<meta property="og:description" content="L'admin Shopify in dark mode, con i colori nativi di Polaris. Gratis, nessun dato raccolto.">
+<link rel="icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAAVK0lEQVR4Xu1dDXBc1XU+975d7a4kS7JkRd7VyjY2tgqU2NguNXEHYn4SSh1KG1JCh9B2nFAwLU1JnU5mUpdmMuMhBKbjFmaa4EwZ0kLTTkvAoUPKT2ri4FBMGIhxbWxC7ZVWQrYsydJqtfv23c533rubtSxZv/veW+37ZnYkr6zV2/2+83PPPfc8QXOH4bxEQb9UPB5fRkQbhBCbiOhypdQqIcRiImqd+5+rCvQppc4IIY4T0TtKqQNEdDCdTp8oeffnfe6zgZjNLzmQRKScByWTyYuVUjcR0c1KKZDfVPraSuG/BpguhDiXGqXUgBDiIBE9K4R4PpVKHXNeC/8RD2u6r12K2QgAvwPy2eITicR1QogvKKVukVJGQLRDNhjHRekLBGbz96oR2lq0geHzFhAFHpZljQkhnlFKfbu7u/sl5wOCR8DnPSNLmykh+CNMfDKZvNKyrK8JIT7pXBSeNh2S+YKrkbkyQhsUvoaklGxoSqkXpJQ7U6nU6yVCKIbjqTATkkIguLm5uSEajX5dCHGvEEJalqVVF5DuHoreVUoplVKWUurRbDb71f7+/iEIxDHGKTFdAfALxuPxzVLKPUKITsuy9EXoZCSAN4C1QwdCKXXEsqxt6XR6/3RFAKu9ECAQEGwmEglY/I+ICORrVx+Q7z3AgXA46QRH4MrxAPyzC13ihQRQTPbi8fg3pJR/DzHA3TjqCuAvhBxuDHAFzpx87YKheTIBaMsH+Q8bhrHDURgwldcI4B2YG3AFzsCdI4JJPcFkZLLbh4oMw7jfsqy8EwqmmzME8A5svOAM3DmeACF7wnA9EaGc8CUSie1Sykcd8vFcQH5lAUm6KaUMW5Z1b3d392MTJYbjSeV1fnt7O0q4P3YKOsHyrnLBKzWnqvgbXV1dKCkXaznj4znEoFpbW+uVUt8tcfmB5VcudBUWyft3wa1TKSxyWpoD4HsrHA7vklKuUkohbgQJX+UDhSKEglXg1ikXF3nVSmC3EI/H10sp33CWE4HrXzjQoQCV243pdPpNHQq0EvQGwkMlyV7g+hcONJf4Co4B5ry43l+6dOnVhmH8t1IKpcWgwrcwURBCGIVC4Zqenp594PmXsUCI+4QQxf39AAsSChyDa/3u2DW0tbWtMAzjCBGFnR8E7n9hQof6fKFQ6Ozt7f2AE71QKHSzlLLGKRsG5C9cgNsCuAbn4J7buizLuiWw/KoBG7jDuRLJZLLdsqzDRLRofJEgwIIEwgBEcFZKeYk0TXOTEALk6/69AAsbIB/l4UXgHp0kV5auCwNUBTgZBPcoE15eFW85wHkA91IIgX5+FsRC+YzGtdQHOB8wfLSYX4xvmhfEJyTg0gQ/zLwiu2c1wIUA7kNCCC2Ailz/w9qFFFTIW5TJFggdi0sSESoUFGXOmiyIAOeBPxRwX7GdPky8EJTLFiifU9TQHKZLNjXRuo8vpkitQf+86xeVqWh3ISCAioK2+NxogV19++paumJLM112VSM1xyNM/uNfeY/O9uepdlEoCAVToKIEIA1BZs5iq2+/uJY+dnMrffTqxRSrNyg7Yp+Geu25Pvr5/oGA/GmiIgRgu3uizJBJja01dNPn22jjDS1s7SB+ZNDkPCCXtejVf/+QQmFBamZnJKsWvheAtvp8zqKNn2ihGz4Xp5Z4hEaHCywI/ByAF3j9P09R9/EM1TaEyCoEq4DpwNcCALmw8LqGEN3658tp/XXNlBu12OLxM02+/n8/ebbPtn6fLAGRpPp9LoJvBQBSYeEX/Wo9k9+2PFp09Zp4AOv9WH2I3vnxGbZ+fO+HGgDIz+fzFAr59iNm+PLqsHaHlW+4vpk+/cXlJA0qWv2EUIreeuXMdDyeKwD5hUKBOjo6rJ6eHq66+RW+K/9q8q+5tY0+++UV7M6R3JVavQY+13BE0ocns/T+22epJiZ9Yf0gPxqN0p49e4ba2tqsXC533sgXv8BXAtDkf/z32uhTdycpm7EI4ycmq+ZBHDURSUcPDtHwgElGyPu3A5efyWRoy5YtY2vXrh3bunXrWDabJcPwZ5+t95+YA1j4yJBJ13ymjbb+cZKzfOBCGztcAjYVHXtrmH/fS08Ltw/yEffhAbZt25bF5d95553Z2tpaGh0d5Z+PH/7kNXwhAJ3wIeZvvWt65INsIyRo6HSeuo9lKFwjyEsFwMpPnz7NWf/27duzmzdvzpmmKVetWmXu2LEjE4lEFH4OIfgJIpFIeJqh6CXc8kvq6PO7VrNbh9ufaksX/y9aZ9CRN4boH//6ONVEMTTJu4+2o6OjcOONN+Zuv/32bGdnp56ggt47NF6oVCplPPXUU5G9e/dGjh8/jmEO3l1sCTz1ACAZpV29zocYsIs3FfkAPj/8/5NHM7wngHDgBUCkYRjqjjvuyD7wwAPDnZ2dmKWAkS2ll4PeS3iCkXvuuWc0FovxbC0/hANPBQCmsZOHhA/rfGzwTHv7VsC6iPpOZu3eZo8AEk3TFDt37qxbt25dy4MPPlh/6tQptNpxLoCvw8PD4rHHHqvbtGlTy/bt2xcNDw/zz/3gBTwLATruo7yL5Z6u7s0EeI1v/eV7lDo64nkIAKFjY2M0ODhIa9eutfbt29ePpSCwdevWphdeeCHU1NTEy8Nx3sFTeGI72vVjYwe1/bFRa0YuHO4fLh9l4uEzeTKc/QAvAVJramowOZUOHTokn376abBvvfjii+FXX3011N7e7jvyAW8E4OzcbbmtjTd2kAdMJ+6fk7wYgpeK2UyBhMdLQA24dNM0KRKJ0JNPPsnm/8QTT8TwFQLxk+VruC4AEI1Yj/18bOmCxImqfFNBSqIxNIXkppc0ugWQHIvF6PDhw6Hdu3fXHThwIIw6APIBP8IDAdhNm2jmwH7+rLZtlWIBYLPIzM/ce7gBJIe7du2qy2QyGOfqxp+cFVy9MrZ+p5sHnTxw37Ox/kqBn4n3JAQg9mPZd8W1zdzAYZn+KIZUM1z1AGjdRvfuZR9r5B2+ORdvAv3MGa4JAAWesaxFF1+xiFoSUW7xmmnmXwTfNIEo1hAiAx1AgRBmDdcEAKBYe+lVjXa//hxJgwAiMUmhsLd7AJUOVwTAhR/TooaWGlrWWUe5sbm7f1VAK5hB0VqDN4Zm7U2qHK4IgGv+Y4riK2Nc/cMe/lwIw++i7w/k1zWG+PUCzA6uCIAJKyjq6Kydt65dNP7WRA1qXlpDXGPxaDew0uGKAOCi0a7d0VnHQpiL9RdhKW4WXZKM2iGg0pnwCK4IAAkbmjdgrSa3SsydLh0GkqtruTPIL2cBKg1lFwATZVpU3xTmB76fB/6LvQTIK+ob7ZNAc5dV9aHsAgDbiNGLmsMUiRnsDeYDEFEhr6hxSQ0tXRnjCmOQB8wcZReAdtWLFuuizfxl7HD7aAZdtXbRnFcW1YqyC4Ch7BxgXlx/CfTewpoNDfbeQnAgdMZwRQAw+vom9MTPvQJ4jgAEUX7MovhFMVpxWT0fHJ3z/kKVwRUBlBMIA1gFYDQMikNBIjgzVLwA0E+AnsLOX2ukj3RE2SPMd6hZyHBPAGU0TWwzI8n89d9aMi/7DNUEVwTA410GC/a2bRmEwKeLMhatv64l8AIzhCsCAND8OY8rwPMAL4BEc/MtrfPTbFIlKLsAdA//8EDeWauXwQVgL8gZJ3PljUto5Ufr+cxAsCKYGmUXABRghIjn9uWzIGXqi5ot9IrgN/+o3W42LafLWSAoIx0O+Bi3pLNn8vYQB6N8HTz6tBA8AIZMYN6AH04N+RllFwDyPrTFj44U6ExvjgzclqqMlqlPDF17+1Lq3Nhozwv2wdExv6LsAgBgmTjBkzqWYYssI/8MDIwGPv1ny6hhSQ3lMWMoaBiZEK4IgM/yS0En/nfEOf9fnkRQA3kGSG9eGqHbv7zCnjuANjRX3m1lwZ2PRCkKRwSlj4/S2dN5u4Fj/jYFJ1Y2Hx41uQ391vuX8REyqzAvvSgLCq4IgOf5hAUNfJij1NEMhaPuZOg8eGrQ5Gnit+1YYYsA42dcedeVAdc+ChyWxGbN4dcH7RGqLn0+WgTrr2+m2/5iBTeR4BEkhjZcEwDP9ItKHuoET+DmgQ4WwYDJZxL/4G9W8nBJFIqCJaKbAlBEoRpJA705OvzTQT7V42Yjpx5J8ysbG+muB1dTYmWM6xJITsuck/oarnkAXp45ucDPXu73pF7PIjhrUtvyGN31jTV01aeWcKKIJWq1hgR3BWApbgz94N1hevfAILeJuT3Z2+4fwPQu4kHUv/+Vi6ixNczJIsfEKisauSoA9gJ8iEfQ/mc+5B08L2blwe1jNQBvsG5LM21/pJOHU+PiMHVEC6EaQoMnY+JAAFwvxsOtv77lnDt/uA00kiIhxaTxrmMZvunE2/vO8Pa1Pn0MWIhfbi1dXIQnArDHxClqaquh7Y+s4azcyyINc4tVSszgI2xd72XojR+epnd/Okj96TGuG+AaQ5hGziUMWwyzKWbhvdvLYFUsWXsJTwSgXSziLlzvb2/v4H4Br+NvqRBw3mCgL0dHD56ln+8/w6LAYGqEDogE1UxcL+8xTFTZLu1+Yr0oFjk8DvoW8bu8EvLYq3gmAIDbunOK/vCBlbRmYyON+mTnTgtBhwaQdsapYp44PEInj47wziZyCJAJYvX7KYUmF+9ThgRFYwbVNhiUXFNHkVpJP3up33PReysAbNqMKWpqDdPd31zD9/tBlc4vpVoWAm6yTIKtHmEA14b5RsODJg2dytFAX549A8SLuoKefYDj67E6g2oXGVTXFKbGljDPRmhoCfNw7O/81TF6780hDjtu1kPGw1MB6FAAS7rsqia6c+dKbvGeyJq8hhYD3DnfpDpkhwFUE7Vgx7tzvYrQHgXeDkvff334A9r//T4+L+n1aSbPBXBOPvCZNrr57iR38vh9/57JdmL7OauD0nxAx3cekEHcuv6j7/XS3m+lfHNnU1/cNQxWALe47996adHiMF372aW+SAovBLZuzv+m7m3A+8N4vDf+6zQ9v6fLLoB5nf05cL0QNBns+/8Z9IPHU/TK93q4xZurhB5nyXMFyMdchIMvnmbXj5tczfcZybnAFx6gFEic9v5DionHNPGRoQJ/X2lVOR336xeHuaYA8o2wnUT6xPgZvhIAnyEQ9n2AESdRG7hpWzsnTxgp73WdYLqA58K14h7Gr/xLDz3/eJdt+T4jn5Ntr28aNSGKdwsv0NprFtPv/EkHj4PLDBfImKzw4hPgnkcYXwfB/uDxLr6dvZ6N4CfL1/CnAHSC4tw/+CPLovS7f7qMVq9voMywyUOm/eYN+Gi6EJzMolD0H393gj44NML/9vM+gq8FoJeIuMEEWstRNr761jbOE7CZZJ85mDoLLyfQgo4yL6wcRazX9vbRS//Uw6PwOdv3+dQS3wuA4xRip0VcbWtfXUs3fC5Bl25q5GXY2IjFBLgtBN3HgP4GFIOOvXWWfvhkN73/9jATj+fc7nWYDSpCAKUhAd4AGzKYC4STwKuvaOCK3FimUDx8Wq5Sss7s7Y0c3AtYsZvf//0P6dBrg2ztxSaXClm+VpQAtDcAsiM47UOcF2y4oZmFgNoBavHYoOH5wc7WKweJmUYKpwSht35BOm8Jh+2bVcHSsbZHfyNG3yMsYQnjZV1/Nqg4ARS9gcThEkVjuMO4UjwY4tJNTXTJpkZauiLKpVYAcdk0sRWrimReEI5oIC54FjSyYmkK0nGb+iP/M0SHfjJA6V+MMtmROoM7nCrB3U8ECAC7LzO1D98AySEuHlaPMfSw0tZkhOcS437EiVW11LgkzLUFbO9OZ+MGN7VC2/hQf5563h+l/zs8TCePZKj3xCgLDr0C4ajkMnClEu9AiXg8fkoI0eK061WuEGC58AqWKhaOAMRkhAZMFEXzJ2ry2HbGc0UI4uYUWDnmGAyeynMzCG5KiVPNSEBDIL1GcijA3/Djmn4G4HYVpdTpkBCin4gggIoGJ2jOkgsWWhMNcQkZFgpC+3tyThiw3+b40vI5zRvGL7d6a+tDdhuYQ7rfl3UzAbjHbcyPSSlXK8WHqpHaVjxKxQAgcYMFc7DQPm58ll7yPJaVuuevwl38ZLCEEIZlWcekEOKdimd8CtjLN9sbwIL5ge9LHyXPc3GnQpZxcwG4l5Zlve68SMXG/wAzBnMN7mUoFDqglDrrnBOsAt1XPbiCDs7BvUylUl1KqTec25zO0zT/AD6GBa7BObhHRxBubvyMc8GBB1j4YI4dzrksokzTfNayrJyzCghEsHABbpH958A5uIcAjN7e3g+UUs85YcCfN7oPMB8oOO7/OXAO7otNoUqp3Uopp9c1wAIFqn947NbvDwLg2y729PTssyzrZRQInOcCLCwUnOLPy+DaWfUVtAfQNYAdJTd1CXKBhQPNJb6CY4A51wKAFzDS6fSbSqlHpcQ9OYNcYAEBsd8At+DYSfY51yut/nH8b21trQ2Hw28JIVY5+wO+OTwSYFZA3R+Fn+P5fH5dX19fxvHy9nKw5CV5i7Cvr29YCHGH4wGcE3ABKhSaP8T/O8CtY/TF8D7euuEWQl1dXSgP3+eEAgzNCfKBygM4Mx3Xfx84dQ4CnbPMn8i9g/BQd3f3Y4VC4SEpJQa8ByKoLGjyw+AQXDrk2xOwSjDZDiCeRyJoxuPxhw3DuN+yLPwyngt2Df0NkI+kL1QoFB5Jp9NfKrH88zz5ZAkev4izMviS4wl0D1WwYeRfMDcO+Q855OsV3YRhfCprxs+5WJRIJO4lor8VQqCLiMOEfz+HqoRZws0Xu7u7H3U8NkQxaQ43lQA0QDbCwWYp5R4hRKdl90otmDayCgZXcqWUKPEesSxrWzqd3j9ZzJ9uDjARWATNzc0N0Wj060KIe7G+tCyc07GbDIL8wDVo48NWPtb4Foo82Wz2q/39/UPTJR+YrgfQKFYIk8nklZZlfU0I8Un7XgAcfhAadNiY6WsHuDA06fgacnb1sIn3gpRyZyqV0q19M6rizoakYl6A600kEtcJIb6glLpFShnBaR0+TmV7BX3oRP+d2fy9akRp7b7oXWFojrGNCSGeUUp9u7u7+yXnAwLxF4z3E2EuhHAziU4wksnkxUqpm4joZqXUBiFEU+kfdEQRYJoYP0RbKTUghDhIRM8KIZ5PpVLHnJfSW/izWp3NRQClYQEoVpji8fgyIoIINhHR5UqpVUKIxUTUOs33X+3oU0qdEUIcJ6J3lFKo4h1Mp9MnSj4YfYZjTg08/w8e1pa7Hu+HmgAAAABJRU5ErkJggg==">
+<style>
+:root{
+  --bg:#0a0a0a;--surface:#1a1a1a;--surface-2:#222;--border:#2e2e2e;
+  --text:#ececec;--muted:#9a9a9a;--accent:#95bf47;--accent-ink:#0f1a00;
+  --radius:16px;--maxw:1080px;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);
+  font:16px/1.6 Inter,-apple-system,"Segoe UI",Roboto,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+
+/* Header */
+.top{display:flex;align-items:center;justify-content:space-between;padding:22px 0}
+.brand{display:flex;align-items:center;gap:10px;font-weight:650;text-decoration:none}
+.brand img{width:28px;height:28px;border-radius:7px}
+.top nav a{color:var(--muted);text-decoration:none;font-size:14px;margin-left:22px}
+.top nav a:hover{color:var(--text)}
+
+/* Hero */
+.hero{display:grid;grid-template-columns:1.05fr 1fr;gap:56px;align-items:center;padding:56px 0 80px}
+.pill{display:inline-flex;align-items:center;gap:8px;padding:5px 12px;border:1px solid var(--border);
+  border-radius:999px;font-size:13px;color:var(--muted);background:var(--surface)}
+.pill i{width:7px;height:7px;border-radius:50%;background:#f5a623;box-shadow:0 0 0 3px #f5a62333}
+h1{font-size:clamp(34px,5vw,54px);line-height:1.08;letter-spacing:-.025em;margin:18px 0 18px;font-weight:700}
+h1 span{color:var(--accent)}
+.lead{font-size:18px;color:#c4c4c4;max-width:34em;margin:0 0 30px}
+.ctas{display:flex;flex-wrap:wrap;gap:12px}
+.btn{display:inline-flex;align-items:center;gap:9px;padding:13px 20px;border-radius:12px;
+  font-weight:600;font-size:15px;text-decoration:none;border:1px solid transparent;transition:transform .15s,background .15s}
+.btn:hover{transform:translateY(-1px)}
+.btn-primary{background:var(--accent);color:var(--accent-ink)}
+.btn-primary:hover{background:#a6cf57}
+.btn-ghost{border-color:var(--border);background:var(--surface);color:var(--text)}
+.btn-disabled{border-color:var(--border);color:var(--muted);cursor:not-allowed;background:transparent}
+.btn svg{width:18px;height:18px}
+.small{font-size:13px;color:var(--muted);margin-top:14px}
+
+/* Mock admin */
+.mock{border-radius:20px;background:#050505;border:1px solid var(--border);padding:10px;
+  box-shadow:0 40px 80px -30px #000,0 0 0 1px #ffffff08 inset;display:grid;grid-template-columns:120px 1fr;gap:8px;min-height:360px}
+.mock-nav{padding:12px 8px}
+.mock-nav b{display:block;height:9px;border-radius:5px;background:#ffffff14;margin:0 0 14px}
+.mock-nav b:first-child{width:22px;height:22px;border-radius:6px;background:var(--accent);margin-bottom:22px}
+.mock-nav b:nth-child(2){width:80%}.mock-nav b:nth-child(3){width:62%}.mock-nav b:nth-child(4){width:72%}
+.mock-nav b:nth-child(5){width:55%}.mock-nav b:nth-child(6){width:68%}
+.mock-main{background:#0a0a0a;border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:12px}
+.mock-metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.mock-card{background:var(--surface);border-radius:12px;padding:12px;box-shadow:0 0 0 1px #ffffff12}
+.mock-card small{display:block;font-size:10px;color:var(--muted)}
+.mock-card strong{display:block;font-size:clamp(13px,1.5vw,17px);letter-spacing:-.01em;white-space:nowrap}
+.mock-card em{display:block;font-style:normal;font-size:10px;color:#5fd07e}
+.mock-chart{flex:1;min-height:150px;position:relative;overflow:hidden}
+.mock-chart svg{position:absolute;inset:30px 12px 12px;width:calc(100% - 24px);height:calc(100% - 42px)}
+.mock-code{font:11px/1.7 ui-monospace,Menlo,monospace;color:#9cdcfe}
+.mock-code .k{color:#c586c0}.mock-code .t{color:#4ec9b0}.mock-code .v{color:#ce9178}
+
+/* Sections */
+section{padding:72px 0;border-top:1px solid #ffffff0d}
+h2{font-size:30px;line-height:1.2;letter-spacing:-.02em;margin:0 0 10px}
+.sub{color:var(--muted);margin:0 0 36px;max-width:40em}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.feat{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:22px}
+.feat .ico{width:36px;height:36px;border-radius:10px;display:grid;place-items:center;background:#95bf4719;color:var(--accent);margin-bottom:14px}
+.feat .ico svg{width:19px;height:19px}
+.feat h3{font-size:16px;margin:0 0 6px}
+.feat p{margin:0;color:var(--muted);font-size:14.5px}
+
+/* Steps */
+.steps{counter-reset:s;display:grid;gap:12px;max-width:760px}
+.step{display:grid;grid-template-columns:40px 1fr;gap:16px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:18px 20px}
+.step::before{counter-increment:s;content:counter(s);width:32px;height:32px;border-radius:50%;
+  display:grid;place-items:center;background:#ffffff0f;font-weight:650;font-size:14px}
+.step h3{margin:4px 0 4px;font-size:16px}
+.step p{margin:0;color:var(--muted);font-size:14.5px}
+code{font:13px ui-monospace,Menlo,monospace;background:#ffffff12;padding:2px 6px;border-radius:6px;color:var(--text)}
+.copy{cursor:pointer;border:0;background:#ffffff12;color:var(--text);font:13px ui-monospace,Menlo,monospace;padding:3px 8px;border-radius:6px}
+.copy:hover{background:#ffffff1f}
+
+/* FAQ */
+details{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:16px 20px;margin-bottom:10px;max-width:760px}
+summary{cursor:pointer;font-weight:600;list-style:none;display:flex;justify-content:space-between;gap:16px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";color:var(--muted);font-weight:400;font-size:20px;line-height:1}
+details[open] summary::after{content:"−"}
+details p{color:var(--muted);margin:10px 0 0;font-size:14.5px}
+
+footer{padding:40px 0 56px;border-top:1px solid #ffffff0d;color:var(--muted);font-size:13px}
+footer p{margin:4px 0}
+
+@media (max-width:860px){
+  .hero{grid-template-columns:1fr;gap:40px;padding-top:28px}
+  .grid{grid-template-columns:1fr}
+  .mock{grid-template-columns:1fr}.mock-nav{display:none}
+  .top nav{display:none}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header class="top">
+    <a class="brand" href="#"><img src="data:image/png;base64,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" alt="">Admin Dark</a>
+    <nav><a href="#funzioni">Funzioni</a><a href="#installa">Installa</a><a href="#faq">FAQ</a></nav>
+  </header>
+
+  <div class="hero">
+    <div>
+      <span class="pill"><i></i>In revisione sul Chrome Web Store</span>
+      <h1>L'admin Shopify,<br><span>finalmente al buio.</span></h1>
+      <p class="lead">Un'estensione Chrome che attiva la palette scura che Shopify ha già disegnato in Polaris. Niente filtri invertiti: colori, ombre e stati sono quelli originali del tema dark.</p>
+      <div class="ctas">
+        <a class="btn btn-primary" href="/downloads/admin-dark-chrome.zip" download>
+          <svg viewBox="0 0 20 20" fill="none"><path d="M10 3v10m0 0 4-4m-4 4-4-4M4 16h12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Scarica l'estensione
+        </a>
+        <span class="btn btn-disabled" title="Disponibile a breve">Chrome Web Store · presto</span>
+      </div>
+      <p class="small">Gratis · Chrome, Edge, Brave, Arc · nessun dato raccolto</p>
+    </div>
+
+    <div class="mock" aria-hidden="true">
+      <div class="mock-nav"><b></b><b></b><b></b><b></b><b></b><b></b></div>
+      <div class="mock-main">
+        <div class="mock-metrics">
+          <div class="mock-card"><small>Sessioni</small><strong>12.480</strong><em>↑ 8%</em></div>
+          <div class="mock-card"><small>Vendite</small><strong>€ 38.920</strong><em>↑ 12%</em></div>
+          <div class="mock-card"><small>Conversione</small><strong>2,9%</strong><em>↑ 0,3</em></div>
+        </div>
+        <div class="mock-card mock-chart"><small>Vendite nel tempo</small>
+          <svg viewBox="0 0 300 100" preserveAspectRatio="none"><defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#95bf47" stop-opacity=".35"/><stop offset="1" stop-color="#95bf47" stop-opacity="0"/></linearGradient></defs>
+            <path d="M0 78 L30 70 L60 74 L90 55 L120 60 L150 42 L180 48 L210 30 L240 36 L270 18 L300 22 L300 100 L0 100Z" fill="url(#g)"/>
+            <path d="M0 78 L30 70 L60 74 L90 55 L120 60 L150 42 L180 48 L210 30 L240 36 L270 18 L300 22" fill="none" stroke="#95bf47" stroke-width="2" vector-effect="non-scaling-stroke"/></svg>
+        </div>
+        <div class="mock-card mock-code"><span class="k">FROM</span> <span class="t">sales</span> <span class="k">SHOW</span> total_sales <span class="k">SINCE</span> <span class="v">-30d</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section id="funzioni">
+  <div class="wrap">
+    <h2>Fatta per chi passa la giornata nell'admin</h2>
+    <p class="sub">Copre i token Polaris e corregge a mano i componenti che usano colori fissi.</p>
+    <div class="grid">
+      <div class="feat"><div class="ico"><svg viewBox="0 0 20 20" fill="none"><path d="M16 11.5A6.5 6.5 0 1 1 8.5 4a5 5 0 0 0 7.5 7.5Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg></div>
+        <h3>Palette nativa Polaris</h3><p>Usa il tema dark ufficiale già presente nel CSS di Shopify, non un'inversione dei colori.</p></div>
+      <div class="feat"><div class="ico"><svg viewBox="0 0 20 20" fill="none"><path d="M11 2 4 11h5l-1 7 7-9h-5l1-7Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg></div>
+        <h3>Nessun flash bianco</h3><p>Il tema si applica prima che la pagina venga disegnata, anche durante il caricamento.</p></div>
+      <div class="feat"><div class="ico"><svg viewBox="0 0 20 20" fill="none"><rect x="2.5" y="6" width="15" height="8" rx="4" stroke="currentColor" stroke-width="1.7"/><circle cx="13.5" cy="10" r="2" fill="currentColor"/></svg></div>
+        <h3>On/off istantaneo</h3><p>Un toggle nel popup dell'estensione, applicato subito alle schede aperte senza ricaricare.</p></div>
+      <div class="feat"><div class="ico"><svg viewBox="0 0 20 20" fill="none"><path d="M3 15V9m5 6V5m5 10v-4m4 4V7" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></div>
+        <h3>Analytics e report</h3><p>Grafici, metriche della home e l'editor ShopifyQL con syntax highlighting scuro.</p></div>
+      <div class="feat"><div class="ico"><svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="7.25" stroke="currentColor" stroke-width="1.7"/><path d="M2.75 10h14.5M10 2.75c2 2.2 2.9 4.6 2.9 7.25S12 15.05 10 17.25C8 15.05 7.1 12.65 7.1 10S8 4.95 10 2.75Z" stroke="currentColor" stroke-width="1.5"/></svg></div>
+        <h3>Globo e Live View</h3><p>Anche il globo delle attività e il mappamondo di Live View passano al buio.</p></div>
+      <div class="feat"><div class="ico"><svg viewBox="0 0 20 20" fill="none"><path d="M10 2.5 3.5 5v4.5c0 4 2.8 6.9 6.5 8 3.7-1.1 6.5-4 6.5-8V5L10 2.5Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg></div>
+        <h3>Zero dati raccolti</h3><p>Solo CSS. Gira esclusivamente su admin.shopify.com, senza account né tracciamento.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="installa">
+  <div class="wrap">
+    <h2>Installala in un minuto</h2>
+    <p class="sub">Finché la scheda sul Chrome Web Store non è approvata, si installa a mano. Quando sarà online basterà un clic e si aggiornerà da sola.</p>
+    <div class="steps">
+      <div class="step"><div><h3>Scarica e estrai lo zip</h3><p><a href="/downloads/admin-dark-chrome.zip" download>admin-dark-chrome.zip</a> → estrailo in una cartella che non cancellerai (es. Documenti).</p></div></div>
+      <div class="step"><div><h3>Apri la pagina estensioni</h3><p>Incolla nella barra degli indirizzi <button class="copy" data-copy="chrome://extensions">chrome://extensions</button> e attiva <strong>Modalità sviluppatore</strong> in alto a destra.</p></div></div>
+      <div class="step"><div><h3>Carica la cartella</h3><p>Clicca <strong>Carica estensione non pacchettizzata</strong> e seleziona la cartella estratta (quella che contiene <code>manifest.json</code>).</p></div></div>
+      <div class="step"><div><h3>Apri l'admin</h3><p>Vai su <code>admin.shopify.com</code>: è già in dark. Fissa l'icona nella barra per avere il toggle a portata di mano.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="wrap">
+    <h2>Domande frequenti</h2>
+    <p class="sub">Le risposte brevi.</p>
+    <details><summary>Le app installate nell'admin diventano scure?</summary><p>No. Le app embedded girano in iframe su domini propri e mantengono il loro tema.</p></details>
+    <details><summary>Cosa succede se Shopify aggiorna l'admin?</summary><p>La base (token Polaris) è molto stabile. Se qualche componente torna chiaro dopo un aggiornamento, esce una nuova versione: dal Chrome Web Store si aggiornerà in automatico.</p></details>
+    <details><summary>Chrome dice "Disattiva le estensioni in modalità sviluppatore"?</summary><p>È un avviso normale per le estensioni installate a mano. Chiudilo e basta; sparirà con la versione del Chrome Web Store.</p></details>
+    <details><summary>Funziona su Safari o Firefox?</summary><p>Per ora no: Chrome e browser basati su Chromium (Edge, Brave, Arc, Opera).</p></details>
+    <details><summary>Ho trovato un pezzo ancora bianco.</summary><p>Scrivimi indicando la pagina: lo aggiungo nella prossima versione.</p></details>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>Creata da <a href="https://biondi.dev">Luca Biondi</a> · Performance Boutique</p>
+    <p>Estensione indipendente, non affiliata né approvata da Shopify Inc. Shopify è un marchio registrato di Shopify Inc.</p>
+  </div>
+</footer>
+
+<script>
+document.querySelectorAll('.copy').forEach(b=>b.addEventListener('click',async()=>{
+  try{await navigator.clipboard.writeText(b.dataset.copy);const t=b.textContent;b.textContent='Copiato ✓';setTimeout(()=>b.textContent=t,1400)}catch(e){}
+}));
+</script>
+</body>
+</html>
