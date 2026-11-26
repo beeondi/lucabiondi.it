@@ -1,0 +1,688 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sistema di Allarme Casa con Centrale Operativa H24 | Sector Alarm</title>
+<meta name="description" content="Sistema di allarme casa collegato alla Centrale Operativa Sector Alarm H24. Installazione inclusa da €199, sopralluogo gratuito e senza impegno.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+<style>
+:root{
+  --red:#E4464E;--red-light:#FF8A8F;--green:#277A5A;--green-light:#5BC79A;
+  --ink:#111;--text:#1A1A1A;--muted:#555;--muted-2:#666;
+  --bg-alt:#F6F5F3;--line:#ECECEC;--line-2:#E5E3DF;
+  --radius:16px;--wrap:1200px;--pad-x:24px;--sec-y:96px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:var(--text);background:#fff;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:var(--ink)}a:hover{color:var(--red)}
+button{font-family:inherit;cursor:pointer}
+h1,h2,h3,p{margin:0}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:var(--sec-y) var(--pad-x)}
+.stack{display:flex;flex-direction:column}
+.alt{background:var(--bg-alt)}
+.dark{background:var(--ink);color:#fff}
+.eyebrow{font-size:13px;font-weight:700;letter-spacing:.08em;color:var(--red);text-transform:uppercase}
+.dark .eyebrow{color:var(--red-light)}
+.h2{font-size:40px;line-height:1.12;font-weight:800;letter-spacing:-.02em}
+.lead{font-size:17px;line-height:1.55;color:var(--muted)}
+.sec-head{display:flex;flex-direction:column;gap:14px;max-width:720px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:14px 26px;border-radius:999px;font-weight:700;font-size:16px;text-decoration:none;border:1.5px solid transparent;transition:background .2s,color .2s}
+.btn-primary{background:var(--green);color:#fff}
+.btn-primary:hover{background:#1F6A4D;color:#fff}
+.btn-outline{background:#fff;color:var(--ink);border-color:var(--ink)}
+.btn-outline:hover{background:var(--ink);color:#fff}
+.media{border-radius:var(--radius);overflow:hidden;display:flex;min-height:420px}
+.media img{width:100%;height:100%;object-fit:cover}
+.check{flex:none}
+sup{font-size:.5em;vertical-align:super;line-height:0}
+
+/* Header */
+.site-header{position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid var(--line)}
+.site-header .bar{max-width:var(--wrap);margin:0 auto;padding:12px var(--pad-x);display:flex;align-items:center;justify-content:space-between;gap:16px}
+.site-header .logo{height:44px;width:auto}
+.header-actions{display:flex;align-items:center;gap:20px}
+.phone{display:flex;align-items:center;gap:8px;text-decoration:none;font-weight:700;font-size:17px;white-space:nowrap}
+.header-actions .btn{min-height:44px;padding:10px 22px;font-size:15px}
+
+/* Hero */
+.hero{color:#fff;background:linear-gradient(90deg,rgba(12,12,12,.88) 0%,rgba(12,12,12,.72) 55%,rgba(12,12,12,.55) 100%),url("https://www.sectoralarm.it/hs-fs/hubfs/IT-Images/Landing%20pages%20(IT)/LP%20Competitor/Hero%20image/hero%20family.png") center/cover no-repeat}
+.hero .wrap{padding-top:96px;padding-bottom:88px;display:flex;flex-wrap:wrap;gap:48px;align-items:center}
+.hero-copy{flex:1 1 520px;min-width:0;display:flex;flex-direction:column;gap:22px}
+.hero h1{font-size:54px;line-height:1.05;font-weight:800;letter-spacing:-.02em;max-width:560px}
+.hero h1 span{color:var(--red)}
+.hero .sub{font-size:19px;line-height:1.55;color:#E6E6E6;max-width:560px}
+.promises{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 20px;max-width:560px;padding:0;margin:0;list-style:none}
+.promises li{display:flex;gap:10px;align-items:center;font-size:15px;font-weight:600}
+
+/* Quiz */
+.quiz{flex:1 1 400px;min-width:0;max-width:460px;background:#fff;color:var(--text);border-radius:20px;box-shadow:0 20px 60px rgba(17,17,17,.25);padding:32px;display:flex;flex-direction:column;gap:18px;scroll-margin-top:90px}
+.quiz-meta{display:flex;justify-content:space-between;font-size:13px;font-weight:600;color:var(--muted-2)}
+.progress{height:6px;background:#EEE;border-radius:3px}.progress span{display:block;width:33%;height:6px;background:var(--red);border-radius:3px}
+.quiz h2{font-size:24px;line-height:1.25;font-weight:800}
+.tiles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.tile{min-height:84px;border-radius:14px;padding:14px;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:4px;text-align:left;color:var(--ink);background:#fff;border:2px solid var(--line-2);transition:border-color .15s,background .15s}
+.tile strong{font-size:16px}.tile small{font-size:13px;color:var(--muted-2)}
+.tile:hover{border-color:#C9C6C0}
+.tile[aria-pressed="true"]{background:#FFF1F1;border-color:var(--red)}
+.quiz-cta{display:block;text-align:center;text-decoration:none;font-weight:700;font-size:16px;padding:16px;border-radius:999px;background:#E9E9E9;color:var(--muted);pointer-events:none}
+.quiz-cta.is-active{background:var(--green);color:#fff;pointer-events:auto}
+.quiz-cta.is-active:hover{background:#1F6A4D;color:#fff}
+.quiz .help{font-size:13px;line-height:1.5;color:var(--muted-2);text-align:center}
+
+/* Timeline */
+.split{display:flex;flex-wrap:wrap;gap:20px;align-items:stretch}
+.timeline{flex:1 1 560px;min-width:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.step-card{background:var(--bg-alt);border-radius:var(--radius);padding:28px;display:flex;flex-direction:column;gap:12px}
+.step-card .time{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:15px;font-weight:700;color:var(--red)}
+.step-card h3{font-size:20px;font-weight:700}
+.step-card p{font-size:15px;line-height:1.55;color:var(--muted)}
+.step-card.is-dark{background:var(--ink);color:#fff}.step-card.is-dark .time{color:var(--red-light)}.step-card.is-dark p{color:#CCC}
+.split .media{flex:1 1 380px;min-width:0}
+.versus{display:flex;flex-wrap:wrap;gap:12px 32px;font-size:15px;color:var(--muted);border-top:1px solid var(--line);padding-top:24px}
+.versus strong{color:var(--ink)}
+
+/* Comparison */
+.chips{display:flex;flex-wrap:wrap;gap:10px}
+.chip{min-height:44px;padding:10px 18px;border-radius:999px;font-size:15px;font-weight:600;background:#fff;color:var(--ink);border:1.5px solid #D9D7D2;white-space:nowrap}
+.chip[aria-pressed="true"]{background:var(--ink);color:#fff;border-color:var(--ink)}
+.compare{background:#fff;border-radius:20px;overflow:hidden}
+.c-row{display:grid;grid-template-columns:2fr 1.2fr 1fr 1fr;align-items:center;padding:20px 28px;border-bottom:1px solid #F1F1F1;font-size:15px}
+.c-head{font-size:14px;font-weight:700;color:var(--muted);border-bottom-color:var(--line)}
+.c-head img{height:32px;width:auto}
+.c-feat{display:flex;flex-direction:column;gap:4px;padding-right:16px}
+.c-feat strong{font-weight:700}.c-feat span{font-size:13px;color:var(--muted-2);line-height:1.45}
+.c-sa{display:flex;gap:8px;align-items:center;font-weight:700;color:#1F6A4D}
+.c-other{color:var(--muted-2)}
+.c-foot{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:16px;padding:20px 28px}
+.c-foot span{font-size:14px;color:var(--muted-2)}
+
+/* Kit carousel */
+.carousel{display:flex;gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding-bottom:2px}
+.carousel::-webkit-scrollbar{display:none}
+.p-card{flex:none;width:300px;scroll-snap-align:start;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column;background:#fff}
+.p-card .ph{height:220px;background:var(--bg-alt);display:flex;align-items:center;justify-content:center}
+.p-card .ph img{height:190px;width:auto}
+.p-card .body{padding:22px;display:flex;flex-direction:column;gap:8px}
+.tag{font-size:12px;font-weight:700;color:var(--red);letter-spacing:.06em}
+.p-card h3{font-size:18px;font-weight:700}
+.p-card p{font-size:14px;line-height:1.5;color:var(--muted)}
+.arrows{display:flex;gap:10px}
+.arrow{width:48px;height:48px;border-radius:50%;border:1.5px solid var(--ink);background:#fff;display:flex;align-items:center;justify-content:center}
+.arrow:disabled{opacity:.3;cursor:default}
+.app-card{border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;background:#fff;display:flex;flex-wrap:wrap;align-items:center}
+.app-card .ph{flex:1 1 380px;min-width:0;padding:32px;display:flex;justify-content:center}
+.app-card .ph img{width:100%;max-width:360px;height:auto}
+.app-card .body{flex:1 1 480px;min-width:0;padding:40px;display:flex;flex-direction:column;gap:16px}
+.app-card h3{font-size:28px;line-height:1.2;font-weight:800;letter-spacing:-.01em}
+.app-card p{font-size:15px;line-height:1.55;color:var(--muted)}
+.benefits{margin:0;padding:0;list-style:none;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 24px}
+.benefits li{display:flex;gap:10px;align-items:center;font-size:15px;font-weight:600}
+
+/* How it works */
+.how .split{flex-direction:row-reverse}
+.how .media{flex:1 1 460px;min-height:380px}
+.steps{flex:1 1 460px;min-width:0;margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:14px}
+.steps li{flex:1 1 0;background:#fff;border-radius:var(--radius);padding:22px 24px;display:flex;gap:18px;align-items:center}
+.steps .n{flex:none;width:40px;height:40px;border-radius:50%;background:var(--ink);color:#fff;font-weight:800;display:flex;align-items:center;justify-content:center}
+.steps li:last-child .n{background:var(--red)}
+.steps strong{display:block;font-size:17px;margin-bottom:4px}
+.steps span{font-size:15px;color:var(--muted);line-height:1.5}
+
+/* Social proof */
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px}
+.stat b{display:block;font-size:48px;font-weight:800;letter-spacing:-.02em;line-height:1.1}
+.stat span{font-size:15px;color:var(--muted)}
+.proof .media{flex:1 1 460px;min-width:0;min-height:480px}
+.reviews{flex:1 1 460px;min-width:0;display:flex;flex-direction:column;gap:16px}
+.review{margin:0;background:var(--bg-alt);border-radius:var(--radius);padding:24px 28px;display:flex;flex-direction:column;gap:10px}
+.stars{color:var(--red);font-size:18px;letter-spacing:2px}
+.review blockquote{margin:0;font-size:16px;line-height:1.55}
+.review figcaption{font-size:14px;font-weight:700}
+.tp-banner{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px 32px;background:var(--ink);color:#fff;text-decoration:none;border-radius:var(--radius);padding:24px 32px}
+.tp-banner:hover{color:#fff;background:#222}
+.tp-left{display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px}
+.tp-stars{color:#00B67A;font-size:22px;letter-spacing:3px}
+.tp-score{font-size:20px;font-weight:800}
+.tp-txt{font-size:15px;color:#CCC}
+.tp-btn{display:flex;align-items:center;gap:10px;font-size:15px;font-weight:700;border:1.5px solid #fff;border-radius:999px;padding:12px 22px;white-space:nowrap}
+
+/* Bonus */
+.bonus .wrap{padding-top:80px;padding-bottom:80px;display:flex;flex-wrap:wrap;gap:48px;align-items:stretch}
+.bonus-copy{flex:1 1 520px;min-width:0;display:flex;flex-direction:column;justify-content:center;gap:16px}
+.bonus-copy p{font-size:17px;line-height:1.6;color:#CCC}
+.bonus-copy .note{font-size:13px;color:#999}
+.bonus-copy .btn{align-self:flex-start;margin-top:8px}
+.bonus .media{flex:1 1 420px;min-width:0;min-height:460px;position:relative;border-radius:20px}
+.countdown{position:absolute;right:20px;bottom:20px;background:rgba(17,17,17,.88);border:1px solid #333;border-radius:var(--radius);padding:18px 22px;display:flex;flex-direction:column;gap:6px;color:#fff}
+.countdown small{font-size:13px;color:#CCC}
+.countdown b{font-size:48px;font-weight:800;line-height:1;letter-spacing:-.03em}
+.countdown b span{font-size:18px;font-weight:600}
+
+/* FAQ */
+.faq .wrap{max-width:860px;display:flex;flex-direction:column;gap:28px}
+.faq-item{border-bottom:1px solid var(--line)}
+.faq-q{width:100%;background:none;border:0;padding:22px 0;display:flex;justify-content:space-between;align-items:center;gap:16px;text-align:left;font-size:17px;font-weight:700;color:var(--ink);min-height:44px}
+.faq-q .sign{flex:none;font-size:24px;font-weight:400;color:var(--red);line-height:1}
+.faq-a{font-size:16px;line-height:1.6;color:var(--muted);padding:0 0 22px}
+.faq-a[hidden]{display:none}
+.more{background:var(--bg-alt);border-radius:var(--radius);padding:28px;display:flex;flex-wrap:wrap;gap:20px;align-items:center;justify-content:space-between}
+.more div:first-child{flex:1 1 320px;min-width:0;display:flex;flex-direction:column;gap:6px}
+.more h3{font-size:20px;font-weight:800}
+.more p{font-size:15px;line-height:1.55;color:var(--muted)}
+.btn-row{display:flex;flex-wrap:wrap;gap:12px}
+
+/* Final CTA + notes + footer */
+.final .wrap{padding-top:80px;padding-bottom:80px;display:flex;flex-direction:column;align-items:center;gap:20px;text-align:center}
+.final .h2{max-width:720px}
+.notes{border-top:1px solid var(--line)}
+.notes .wrap{padding-top:32px;padding-bottom:32px;display:flex;flex-direction:column;gap:10px;font-size:12px;line-height:1.55;color:var(--muted-2)}
+.site-footer .wrap{padding-top:48px;padding-bottom:48px;display:flex;flex-direction:column;gap:24px}
+.f-top{display:flex;flex-wrap:wrap;gap:16px 32px;align-items:center;justify-content:space-between}
+.f-top img{height:48px;width:auto}
+.f-top span{font-size:16px;font-weight:600}
+.site-footer p{font-size:13px;line-height:1.6;color:#BBB}
+.f-links{display:flex;flex-wrap:wrap;gap:10px 24px;font-size:13px}
+.f-links a{color:#DDD}.f-links a:hover{color:#fff}
+
+/* Mobile sticky bar */
+.mobile-bar{display:none}
+
+/* ---------- Tablet ---------- */
+@media (max-width:1024px){
+  :root{--sec-y:80px}
+  .hero h1{font-size:46px}
+  .h2{font-size:34px}
+  .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .quiz{max-width:none}
+}
+
+/* ---------- Mobile ---------- */
+@media (max-width:768px){
+  :root{--sec-y:56px;--pad-x:20px}
+  body{padding-bottom:76px}
+  .site-header .bar{padding:10px var(--pad-x)}
+  .site-header .logo{height:36px}
+  .phone .num{display:none}
+  .phone{width:44px;height:44px;justify-content:center;border:1.5px solid var(--line-2);border-radius:50%}
+  .header-actions{gap:10px}
+  .header-actions .btn{padding:10px 16px;font-size:14px}
+  .hero{background:linear-gradient(180deg,rgba(12,12,12,.86) 0%,rgba(12,12,12,.78) 100%),url("https://www.sectoralarm.it/hs-fs/hubfs/IT-Images/Landing%20pages%20(IT)/LP%20Competitor/Hero%20image/hero%20family.png") 70% center/cover no-repeat}
+  .hero .wrap{padding-top:40px;padding-bottom:48px;gap:28px}
+  .hero-copy{flex-basis:100%;gap:18px}
+  .hero h1{font-size:34px;line-height:1.1}
+  .hero .sub{font-size:16px}
+  .promises{grid-template-columns:1fr;gap:10px}
+  .quiz{flex-basis:100%;padding:22px;border-radius:18px}
+  .quiz h2{font-size:21px}
+  .tile{min-height:72px;padding:12px}
+  .h2{font-size:28px;line-height:1.15}
+  .lead{font-size:16px}
+  .timeline{flex-basis:100%;grid-template-columns:1fr;gap:14px}
+  .step-card{padding:22px}
+  .media,.split .media,.how .media,.proof .media{flex-basis:100%;min-height:260px}
+  .chips{flex-wrap:nowrap;overflow-x:auto;margin:0 calc(var(--pad-x)*-1);padding:0 var(--pad-x) 4px;scrollbar-width:none}
+  .chips::-webkit-scrollbar{display:none}
+  .compare{border-radius:16px}
+  .c-head{display:none}
+  .c-row{grid-template-columns:repeat(3,minmax(0,1fr));gap:12px 10px;padding:18px 20px}
+  .c-feat{grid-column:1/-1;padding-right:0}
+  .c-row>.c-sa,.c-row>.c-other{display:flex;flex-direction:column;align-items:flex-start;gap:4px;font-size:14px;line-height:1.35}
+  .c-row>.c-sa::before,.c-row>.c-other::before{content:attr(data-label);font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:#888}
+  .c-row>.c-sa svg{display:none}
+  .c-foot{padding:18px 20px}
+  .c-foot .btn{width:100%}
+  .carousel{margin:0 calc(var(--pad-x)*-1);padding:0 var(--pad-x) 2px;scroll-padding:0 var(--pad-x)}
+  .p-card{width:78vw;max-width:300px}
+  .arrows{display:none}
+  .app-card .ph{flex-basis:100%;padding:24px 24px 0}
+  .app-card .ph img{max-width:260px}
+  .app-card .body{flex-basis:100%;padding:24px}
+  .app-card h3{font-size:22px}
+  .benefits{grid-template-columns:1fr;gap:10px}
+  .steps{flex-basis:100%}
+  .steps li{padding:18px 20px}
+  .stats{gap:24px 16px}
+  .stat b{font-size:34px}
+  .stat span{font-size:14px}
+  .reviews{flex-basis:100%}
+  .review{padding:20px 22px}
+  .tp-banner{padding:22px}
+  .tp-btn{width:100%;justify-content:center}
+  .bonus .wrap{padding-top:56px;padding-bottom:56px;gap:28px}
+  .bonus-copy{flex-basis:100%}
+  .bonus-copy p{font-size:16px}
+  .bonus-copy .btn{align-self:stretch}
+  .bonus .media{flex-basis:100%;min-height:340px}
+  .countdown{right:14px;bottom:14px;left:14px;flex-direction:row;align-items:center;justify-content:space-between;padding:14px 18px}
+  .countdown b{font-size:34px}
+  .faq-q{font-size:16px;padding:18px 0}
+  .faq-a{font-size:15px}
+  .more{padding:22px}
+  .btn-row{width:100%}.btn-row .btn{flex:1 1 100%}
+  .final .wrap{padding-top:56px;padding-bottom:56px}
+  .final .btn-row .btn{flex:1 1 100%}
+  .site-footer .wrap{padding-top:36px;padding-bottom:36px}
+  .mobile-bar{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:60;gap:10px;padding:12px var(--pad-x) calc(12px + env(safe-area-inset-bottom));background:#fff;border-top:1px solid var(--line);box-shadow:0 -6px 20px rgba(0,0,0,.06)}
+  .mobile-bar .btn{min-height:48px;font-size:15px}
+  .mobile-bar .btn-primary{flex:1}
+  .mobile-bar .btn-outline{width:52px;padding:0}
+}
+@media (max-width:380px){
+  .hero h1{font-size:30px}
+  .tiles{gap:8px}
+  .header-actions .btn{padding:10px 12px;font-size:13px}
+}
+</style>
+</head>
+<body>
+
+<!-- M01 HEADER -->
+<header class="site-header">
+  <div class="bar">
+    <img class="logo" src="https://www.sectoralarm.it/hubfs/SectorAlarm_December2024/Images/footer-logo.svg" alt="Sector Alarm" width="96" height="44">
+    <div class="header-actions">
+      <a class="phone" href="tel:800247800" aria-label="Chiama l'800 24 7 800">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#E4464E" stroke-width="2" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>
+        <span class="num">800 24 7 800</span>
+      </a>
+      <a class="btn btn-primary" href="#quiz">Calcola preventivo</a>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<!-- M02 HERO + QUIZ -->
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-copy">
+      <h1>Allarme intruso?<br><span>Rispondiamo in meno di 30 secondi.<sup>**</sup></span></h1>
+      <p class="sub">Il sistema di allarme casa Sector Alarm è collegato alla nostra Centrale Operativa: quando scatta, un operatore verifica con foto e audio e, se serve, allerta subito Forze dell'Ordine e soccorsi. Anche quando tu non puoi rispondere.</p>
+      <ul class="promises">
+        <li><svg class="check" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5BC79A" stroke-width="2.5" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Installazione inclusa da €199*</li>
+        <li><svg class="check" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5BC79A" stroke-width="2.5" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Sopralluogo gratuito, senza impegno</li>
+        <li><svg class="check" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5BC79A" stroke-width="2.5" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Garanzia per tutta la durata</li>
+        <li><svg class="check" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5BC79A" stroke-width="2.5" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Detrazione fino al 50% nel 2026******</li>
+      </ul>
+    </div>
+
+    <div class="quiz" id="quiz">
+      <div class="quiz-meta"><span>Preventivo in 1 minuto</span><span>Passo 1 di 3</span></div>
+      <div class="progress" aria-hidden="true"><span></span></div>
+      <h2 id="quiz-q">Cosa vuoi proteggere?</h2>
+      <div class="tiles" role="group" aria-labelledby="quiz-q">
+        <button type="button" class="tile" data-value="villetta" aria-pressed="false"><strong>Villetta</strong><small>Casa indipendente</small></button>
+        <button type="button" class="tile" data-value="appartamento" aria-pressed="false"><strong>Appartamento</strong><small>In condominio</small></button>
+        <button type="button" class="tile" data-value="attivita" aria-pressed="false"><strong>Attività</strong><small>Negozio o ufficio</small></button>
+        <button type="button" class="tile" data-value="altro" aria-pressed="false"><strong>Altro</strong><small>Seconda casa, box…</small></button>
+      </div>
+      <a class="quiz-cta" id="quiz-cta" href="https://www.sectoralarm.it/q/home/qt2/" aria-disabled="true">Seleziona un’opzione per continuare</a>
+      <p class="help">Preferisci parlare con un esperto? <a href="tel:800247800"><strong>Chiama l'800 24 7 800</strong></a></p>
+    </div>
+  </div>
+</section>
+
+<!-- M04 COSA SUCCEDE QUANDO SCATTA -->
+<section>
+  <div class="wrap stack" style="gap:48px">
+    <div class="sec-head">
+      <span class="eyebrow">Cosa succede quando scatta l'allarme</span>
+      <h2 class="h2">Dal sensore all'intervento, senza che tu debba fare nulla.</h2>
+    </div>
+    <div class="split">
+      <div class="timeline">
+        <div class="step-card"><span class="time">00:00</span><h3>Il sensore rileva</h3><p>Urto su una finestra, vetro rotto o movimento: il rilevatore con fotocamera scatta immagini e le invia alla Centrale.</p></div>
+        <div class="step-card"><span class="time">00:24</span><h3>Un operatore verifica</h3><p>In media in 24 secondi** la Centrale Operativa controlla le immagini e ti chiama per capire cosa sta succedendo.</p></div>
+        <div class="step-card"><span class="time">LIVE</span><h3>Parla dentro casa</h3><p>Con l'unità vocale l'operatore si rivolge direttamente all'intruso, oppure a te se hai bisogno d'aiuto e non riesci a usare il telefono.</p></div>
+        <div class="step-card is-dark"><span class="time">SE SERVE</span><h3>Allerta i soccorsi</h3><p>Se il pericolo è reale, la Centrale avvisa subito Forze dell'Ordine e soccorsi. Tu ricevi tutto in app, in tempo reale.</p></div>
+      </div>
+      <div class="media">
+        <img src="https://www.sectoralarm.it/hs-fs/hubfs/IT-Images/Card%20768x600/Centrale%20operativa%20attiva%20247.jpg" alt="Operatori della Centrale Operativa Sector Alarm al lavoro" loading="lazy" width="768" height="600">
+      </div>
+    </div>
+    <div class="versus">
+      <span><strong>Impianto tradizionale:</strong> suona la sirena, poi nessuno interviene.</span>
+      <span><strong>Telecamere fai-da-te:</strong> arriva una notifica sul tuo telefono, e tocca a te.</span>
+    </div>
+  </div>
+</section>
+
+<!-- M05 CONFRONTO PER PROBLEMA -->
+<section class="alt">
+  <div class="wrap stack" style="gap:32px">
+    <div class="sec-head">
+      <span class="eyebrow">Perché scegliere il nostro kit senza fili</span>
+      <h2 class="h2">Cosa ti preoccupa di più?</h2>
+      <p class="lead">Scegli la situazione più vicina alla tua: ti mostriamo solo le differenze che contano.</p>
+    </div>
+    <div class="chips" id="chips" role="group" aria-label="Filtra il confronto per problema"></div>
+    <div class="compare">
+      <div class="c-row c-head">
+        <span id="compare-title">Quando non ci sei</span>
+        <span><img src="https://www.sectoralarm.it/hubfs/SectorAlarm_December2024/Images/footer-logo.svg" alt="Sector Alarm" width="70" height="32"></span>
+        <span>Impianto tradizionale</span>
+        <span>Telecamere con app</span>
+      </div>
+      <div id="compare-rows" aria-live="polite"></div>
+      <div class="c-foot">
+        <span>Tutte le caratteristiche vengono spiegate durante il sopralluogo gratuito.</span>
+        <a class="btn btn-primary" href="#quiz">Calcola il tuo preventivo</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- M06 KIT + APP -->
+<section>
+  <div class="wrap stack" style="gap:40px">
+    <div class="sec-head" style="max-width:640px">
+      <span class="eyebrow">Il sistema</span>
+      <h2 class="h2">Ogni punto debole di casa,<br>da oggi è coperto.</h2>
+    </div>
+    <div class="carousel" id="carousel" tabindex="0" aria-label="Dispositivi del sistema">
+      <article class="p-card"><div class="ph"><img src="https://www.sectoralarm.it/hubfs/SectorAlarm_December2024/Images/pir.webp" alt="Rilevatore di movimento con fotocamera" loading="lazy" width="190" height="190"></div><div class="body"><span class="tag">INTERNI</span><h3>Rilevatore di movimento con fotocamera</h3><p>Invia immagini alla Centrale per verificare l'allarme. Foto su richiesta dall'app.</p></div></article>
+      <article class="p-card"><div class="ph"><img src="https://www.sectoralarm.it/hubfs/SectorAlarm_December2024/Images/shock-sensor.webp" alt="Rilevatore d'urto e di contatto" loading="lazy" width="190" height="190"></div><div class="body"><span class="tag">PORTE E FINESTRE</span><h3>Rilevatore d'urto e di contatto</h3><p>Allerta al primo tentativo di forzatura, prima che qualcuno entri.</p></div></article>
+      <article class="p-card"><div class="ph"><img src="https://www.sectoralarm.it/hubfs/SectorAlarm_December2024/Images/glass-break.webp" alt="Rilevatore di rottura vetro" loading="lazy" width="190" height="190"></div><div class="body"><span class="tag">VETRATE</span><h3>Rilevatore di rottura vetro</h3><p>Riconosce il suono del vetro rotto: un sensore copre più finestre.</p></div></article>
+      <article class="p-card"><div class="ph"><img src="https://www.sectoralarm.it/hubfs/SectorAlarm_December2024/Images/outdoor-camera.webp" alt="Telecamera da esterno" loading="lazy" width="190" height="190"></div><div class="body"><span class="tag">ESTERNO</span><h3>Telecamera da esterno</h3><p>Distingue persone, animali e auto. Visione notturna, angolo di 117°, audio bidirezionale.</p></div></article>
+      <article class="p-card"><div class="ph"><img src="https://www.sectoralarm.it/hubfs/SectorAlarm_December2024/Images/pvu.webp" alt="Unità vocale portatile" loading="lazy" width="190" height="190"></div><div class="body"><span class="tag">EMERGENZE</span><h3>Unità vocale portatile SOS</h3><p>Un gesto per chiamare la Centrale e parlare in vivavoce, anche senza telefono.</p></div></article>
+      <article class="p-card"><div class="ph"><img src="https://www.sectoralarm.it/hubfs/SectorAlarm_December2024/Images/signsp.webp" alt="Cartelli dissuasori Sector Alarm" loading="lazy" width="190" height="190"></div><div class="body"><span class="tag">DETERRENZA</span><h3>Cartelli e sirena esterna 102 dB</h3><p>Segnalano subito che la casa è protetta H24, anche di notte.</p></div></article>
+    </div>
+    <div class="arrows">
+      <button type="button" class="arrow" id="prev" aria-label="Dispositivo precedente"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="2.5" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></button>
+      <button type="button" class="arrow" id="next" aria-label="Dispositivo successivo"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+    </div>
+    <div class="app-card">
+      <div class="ph"><img src="https://www.sectoralarm.it/hubfs/app-1.webp" alt="App Sector Alarm con temperatura e stato dell'allarme" loading="lazy" width="360" height="423"></div>
+      <div class="body">
+        <span class="tag">APP</span>
+        <h3>Tutta la casa sotto controllo, dallo smartphone.</h3>
+        <p>Attivi l'allarme, guardi le telecamere e ricevi ogni avviso in tempo reale, ovunque tu sia.</p>
+        <ul class="benefits">
+          <li><svg class="check" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#277A5A" stroke-width="2.5" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Attivazione programmata</li>
+          <li><svg class="check" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#277A5A" stroke-width="2.5" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Notifiche in tempo reale</li>
+          <li><svg class="check" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#277A5A" stroke-width="2.5" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Telecamere in diretta</li>
+          <li><svg class="check" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#277A5A" stroke-width="2.5" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Cronologia eventi</li>
+          <li><svg class="check" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#277A5A" stroke-width="2.5" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Temperatura e umidità</li>
+          <li><svg class="check" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#277A5A" stroke-width="2.5" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Luci ed elettrodomestici</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- M07 COME FUNZIONA -->
+<section class="alt how">
+  <div class="wrap stack" style="gap:40px">
+    <div class="sec-head" style="max-width:560px">
+      <span class="eyebrow">Come funziona</span>
+      <h2 class="h2">Meno di 2 ore per proteggerti tutto l'anno.</h2>
+      <p class="lead">Nessun lavoro in muratura necessario: il kit Sector Alarm è senza fili e lo installano i nostri tecnici.</p>
+    </div>
+    <div class="split">
+      <div class="media">
+        <img src="https://www.sectoralarm.it/hs-fs/hubfs/IT-Images/Card%20768x550/Tecnico%20Sector%20Alarm%20spiega%20il%20sistema%20di%20allarme.jpg" alt="Tecnico Sector Alarm spiega il sistema di allarme a una cliente" loading="lazy" width="768" height="550">
+      </div>
+      <ol class="steps">
+        <li><span class="n">1</span><div><strong>Rispondi a 3 domande</strong><span>Ci dici che casa hai e cosa ti preoccupa. Un minuto, gratis.</span></div></li>
+        <li><span class="n">2</span><div><strong>Sopralluogo gratuito</strong><span>Un Esperto di Sicurezza valuta la tua casa e ti propone il kit su misura, senza impegno.</span></div></li>
+        <li><span class="n">3</span><div><strong>Installazione in meno di 2 ore</strong><span>Attivazione, collegamento alla Centrale e formazione inclusi nel prezzo.</span></div></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- M08 PROVA SOCIALE -->
+<section class="proof">
+  <div class="wrap stack" style="gap:40px">
+    <div class="stats">
+      <div class="stat"><b>24 s<sup>**</sup></b><span>tempo medio di risposta a ogni allarme</span></div>
+      <div class="stat"><b>96%</b><span>clienti soddisfatti del servizio</span></div>
+      <div class="stat"><b>850.000</b><span>clienti Sector Alarm in Europa</span></div>
+      <div class="stat"><b>100×</b><span>autotest del sistema ogni giorno</span></div>
+    </div>
+    <div class="split">
+      <div class="media">
+        <img src="https://www.sectoralarm.it/hs-fs/hubfs/SectorAlarm_December2024/Images/professional-installation.webp" alt="Tecnici Sector Alarm installano un sensore su una porta" loading="lazy" width="1157" height="1019">
+      </div>
+      <div class="reviews">
+        <figure class="review"><div class="stars" role="img" aria-label="5 stelle su 5">★★★★★</div><blockquote>"In un paio di occasioni, con un semplice clic dell'app, ho ottenuto risposte immediate e rassicuranti. Il sistema è intuitivo e l'installazione impeccabile."</blockquote><figcaption>Giulia S.</figcaption></figure>
+        <figure class="review"><div class="stars" role="img" aria-label="5 stelle su 5">★★★★★</div><blockquote>"Il consulente mi ha guidato nella scelta del sistema perfetto per la mia abitazione. L'installazione è stata veloce e i tecnici hanno lasciato tutto pulito."</blockquote><figcaption>Marco R.</figcaption></figure>
+        <figure class="review"><div class="stars" role="img" aria-label="5 stelle su 5">★★★★★</div><blockquote>"Dal preventivo all'attivazione, ogni fase è stata gestita con estrema precisione. Gli installatori sono stati gentilissimi e attenti a ogni dettaglio."</blockquote><figcaption>Luca P.</figcaption></figure>
+      </div>
+    </div>
+    <a class="tp-banner" href="[URL TRUSTPILOT]" target="_blank" rel="noopener">
+      <span class="tp-left"><span class="tp-stars" role="img" aria-label="Valutazione 4,9 su 5">★★★★★</span><span class="tp-score">4,9/5 su Trustpilot***</span><span class="tp-txt">Leggi le recensioni verificate dei nostri clienti</span></span>
+      <span class="tp-btn">Vedi tutte le recensioni<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+    </a>
+  </div>
+</section>
+
+<!-- M09 BONUS SICUREZZA -->
+<section class="dark bonus">
+  <div class="wrap">
+    <div class="bonus-copy">
+      <span class="eyebrow">Bonus Sicurezza 2026</span>
+      <h2 class="h2">Nel 2026 detrai fino al 50% della spesa.<sup>******</sup></h2>
+      <p>Le spese per l'installazione del sistema d'allarme rientrano nel Bonus Sicurezza: la detrazione IRPEF è del 50% se l'impianto è nella tua abitazione principale e ne sei proprietario, del 36% negli altri casi, come la seconda casa. Si recupera in 10 rate annuali nella dichiarazione dei redditi, pagando con bonifico parlante. Dal 2027 le aliquote sono previste in calo.</p>
+      <a class="btn btn-primary" href="#quiz">Prenota il sopralluogo</a>
+      <p class="note">Verifica sempre le condizioni attuali con un consulente fiscale. Le normative possono variare.</p>
+    </div>
+    <div class="media">
+      <img src="https://www.sectoralarm.it/hs-fs/hubfs/IT-Images/QT/Richiedi%20un%20preventivo%20gratuito%20e%20proteggi%20la%20tua%20casa.jpg" alt="Coppia a casa che richiede un preventivo per il sistema di allarme" loading="lazy" width="650" height="900">
+      <div class="countdown"><small>La detrazione al 50% vale ancora per</small><b><span id="days" style="font-size:inherit;font-weight:inherit">–</span> <span>giorni</span></b></div>
+    </div>
+  </div>
+</section>
+
+<!-- M10 FAQ -->
+<section class="faq">
+  <div class="wrap">
+    <div class="stack" style="gap:12px">
+      <h2 class="h2">Domande Frequenti sul nostro Sistema di Allarme Casa</h2>
+      <p class="lead">Trova le risposte alle domande più comuni sul nostro sistema di allarme</p>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item">
+        <button type="button" class="faq-q" aria-expanded="true" aria-controls="faq-1">Come funziona il sistema di allarme casa Sector Alarm?<span class="sign" aria-hidden="true">−</span></button>
+        <p class="faq-a" id="faq-1">Il nostro sistema di allarme utilizza una rete di sensori wireless che rilevano intrusioni e tentativi di effrazione. In caso di allarme, la centrale operativa viene immediatamente allertata e gestisce l'emergenza contattando te e, se necessario, le forze dell'ordine. La tecnologia wireless garantisce un'installazione non invasiva e un'affidabilità superiore.</p>
+      </div>
+      <div class="faq-item">
+        <button type="button" class="faq-q" aria-expanded="false" aria-controls="faq-2">Quali dispositivi include il sistema di allarme casa?<span class="sign" aria-hidden="true">+</span></button>
+        <p class="faq-a" id="faq-2" hidden>Il sistema base include una centralina di controllo, sensori perimetrali per porte e finestre, rilevatori di movimento con immunità agli animali domestici, sirene interne ed esterne. Può essere integrato con rilevatori di fumo, acqua e gas, telecamere di sicurezza e sistemi di domotica avanzata.</p>
+      </div>
+      <div class="faq-item">
+        <button type="button" class="faq-q" aria-expanded="false" aria-controls="faq-3">Come funziona la centrale operativa H24?<span class="sign" aria-hidden="true">+</span></button>
+        <p class="faq-a" id="faq-3" hidden>La nostra centrale operativa è attiva 24 ore su 24, 365 giorni l'anno. In caso di allarme, i nostri operatori verificano immediatamente la situazione attraverso i sensori e le telecamere, contattano il proprietario e, se necessario, allertano le forze dell'ordine. Il tempo medio di risposta è inferiore a 30 secondi.</p>
+      </div>
+      <div class="faq-item">
+        <button type="button" class="faq-q" aria-expanded="false" aria-controls="faq-4">Cosa succede in caso di interruzione di corrente?<span class="sign" aria-hidden="true">+</span></button>
+        <p class="faq-a" id="faq-4" hidden>Tutti i nostri dispositivi sono dotati di batterie di backup che garantiscono il funzionamento del sistema per almeno 24 ore in caso di blackout. Inoltre, il sistema utilizza una doppia connessione (Internet + GSM) per garantire la comunicazione con la centrale operativa anche in caso di guasti alla linea telefonica.</p>
+      </div>
+      <div class="faq-item">
+        <button type="button" class="faq-q" aria-expanded="false" aria-controls="faq-5">Come posso ottenere il bonus fiscale del 50%?<span class="sign" aria-hidden="true">+</span></button>
+        <p class="faq-a" id="faq-5" hidden>Il nostro sistema di allarme rientra tra gli interventi di sicurezza domestica che beneficiano della detrazione fiscale del 50% sulla prima casa, del 36% sugli altri immobili, fino a un limite di spesa di 96.000 euro. Ti forniamo tutta la documentazione necessaria per richiedere il bonus in fase di dichiarazione dei redditi, semplificando al massimo la procedura.</p>
+      </div>
+    </div>
+    <div class="more">
+      <div>
+        <h3>Hai altre domande?</h3>
+        <p>Il nostro team di esperti è sempre disponibile per rispondere a tutte le tue domande</p>
+      </div>
+      <div class="btn-row">
+        <a class="btn btn-outline" href="tel:800247800">Chiama il 800 24 7 800</a>
+        <a class="btn btn-primary" href="#quiz">Calcola preventivo</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- M11 CTA FINALE -->
+<section class="alt final">
+  <div class="wrap">
+    <h2 class="h2">Scopri quanto costa proteggere la tua casa.</h2>
+    <p class="lead">Preventivo gratuito e senza impegno. Installazione inclusa da €199*.</p>
+    <div class="btn-row" style="justify-content:center">
+      <a class="btn btn-primary" href="#quiz">Calcola preventivo</a>
+      <a class="btn btn-outline" href="tel:800247800">Chiama 800 24 7 800</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- NOTE LEGALI -->
+<section class="notes">
+  <div class="wrap">
+    <p>* Una tantum da 199€ IVA inclusa per il cliente consumatore e IVA esclusa per il cliente business, per il Kit base, comprensiva di installazione, attivazione, collegamento alla Centrale Operativa e formazione. Una tantum e canone aumentano con i dispositivi aggiunti, secondo le specifiche comunicate dal cliente in fase di preventivo. Prezzo applicato per le installazioni fino al 29/11/2026.</p>
+    <p>** Tempo medio che intercorre tra l'arrivo alla Centrale Operativa di un segnale di allarme prioritario e la chiamata al cliente, calcolato dal 01/03/2026 al 31/05/2026.</p>
+    <p>*** Trustscore aggiornato a novembre 2026.</p>
+    <p>**** I rapporti contrattuali sono disciplinati dai Termini e Condizioni generali. Eventuali modifiche sono regolamentate da appositi addendum sottoscritti dal cliente, che possono integrare e/o sostituire parzialmente o totalmente i termini e condizioni originali.</p>
+    <p>***** Sistema di allarme in comodato gratuito. Servizio in abbonamento mensile.</p>
+    <p>****** Il "Bonus Sicurezza" è un'agevolazione fiscale statale prevista dall'art. 16-bis del TUIR, che consente una detrazione IRPEF del 50% sulle spese sostenute per l'installazione di impianti di allarme sulla prima casa, del 36% su altri immobili. Sector Alarm non eroga direttamente lo sconto, ma offre servizi di fornitura e posa in opera soggetti a questa detrazione.</p>
+    <p>******* Le immagini hanno valore indicativo e non rappresentano necessariamente l'installazione finale del prodotto, che sarà definita dall'Esperto di Sicurezza in base alle caratteristiche della proprietà.</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site-footer dark">
+  <div class="wrap">
+    <div class="f-top">
+      <img src="https://www.sectoralarm.it/hubfs/SectorAlarm_December2024/Images/footer-logo.svg" alt="Sector Alarm" width="104" height="48" loading="lazy">
+      <span>Il tuo sistema di allarme intelligente</span>
+    </div>
+    <p>© Sector Alarm. Tutti i diritti riservati. I nomi dei prodotti e dei servizi elencati in questa web rappresentano marchi e/o marchi registrati appartenenti ai rispettivi proprietari e utilizzati sotto licenza. È severamente proibita qualsiasi forma di utilizzo non autorizzato.</p>
+    <nav class="f-links" aria-label="Link legali">
+      <a href="#">Termini e Condizioni</a>
+      <a href="#">Addendum Termini e Condizioni</a>
+      <a href="#">Informativa Precontrattuale</a>
+      <a href="#">Politica di Privacy</a>
+      <a href="#">Politica di Privacy per il Reclutamento</a>
+      <a href="#">Politica sui Cookie</a>
+      <a href="#">Segnalazione di illeciti</a>
+    </nav>
+  </div>
+</footer>
+
+<!-- MOBILE STICKY BAR -->
+<div class="mobile-bar">
+  <a class="btn btn-primary" href="#quiz">Calcola preventivo</a>
+  <a class="btn btn-outline" href="tel:800247800" aria-label="Chiama l'800 24 7 800">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="2" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>
+  </a>
+</div>
+
+<script>
+(function(){
+  /* Quiz step 1 */
+  var QUIZ_URL = 'https://www.sectoralarm.it/q/home/qt2/';
+  var tiles = document.querySelectorAll('.tile');
+  var cta = document.getElementById('quiz-cta');
+  tiles.forEach(function(t){
+    t.addEventListener('click', function(){
+      tiles.forEach(function(x){ x.setAttribute('aria-pressed','false'); });
+      t.setAttribute('aria-pressed','true');
+      cta.classList.add('is-active');
+      cta.removeAttribute('aria-disabled');
+      cta.textContent = 'Continua →';
+      cta.href = QUIZ_URL + '?proprieta=' + encodeURIComponent(t.dataset.value) + location.search.replace(/^\?/, '&');
+    });
+  });
+
+  /* Confronto per problema */
+  var CHECK = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#277A5A" stroke-width="2.5" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>';
+  var data = {
+    away:{label:'Sono spesso fuori casa',title:'Quando non ci sei',rows:[
+      ['Qualcuno risponde all’allarme','Se sei in riunione o in viaggio, la Centrale gestisce l’allarme al posto tuo.','Centrale H24','Solo sirena','Solo a te'],
+      ['Verifica foto e video da remoto','L’operatore vede cosa succede prima di agire.','Incluso','No','Solo tu, se guardi'],
+      ['Avviso a Forze dell’Ordine','In caso di pericolo reale, senza che tu debba chiamare.','Automatico','No','No'],
+      ['Controllo da app','Attivi, disattivi e controlli sensori e telecamere ovunque.','App premiata iF 2023','Raramente','Sì']]},
+    night:{label:'Ho paura dei furti di notte',title:'Mentre dormi',rows:[
+      ['Allarme prima che entrino','I sensori d’urto reagiscono al primo tentativo su porte e finestre.','Sensori d’urto','Dipende','No'],
+      ['Rilevamento rottura vetro','Un solo sensore copre più vetrate.','Incluso','Dipende','No'],
+      ['Un operatore parla all’intruso','L’unità vocale fa sapere che qualcuno sta guardando.','Unità vocale','No','Parziale'],
+      ['Sirena esterna potente','Deterrente sonoro e luminoso.','102 dB con LED','Sì','Raramente']]},
+    outage:{label:'Blackout, Wi-Fi o jammer',title:'Se qualcosa va storto',rows:[
+      ['Resta collegato se cade internet','Tre connessioni indipendenti: se una cade, lavorano le altre.','Ethernet + Wi-Fi + GSM','Dipende','Solo Wi-Fi'],
+      ['Protezione contro i disturbatori','I ladri più organizzati usano jammer per isolare l’allarme.','Anti-jamming','Raramente','No'],
+      ['Funziona senza corrente','La batteria di backup tiene attivo il sistema.','Batteria di backup','Dipende','No'],
+      ['Controllo continuo del sistema','Se qualcosa non va, lo sappiamo prima di te.','100 autotest al giorno','No','No']]},
+    family:{label:'Proteggo persone care',title:'Per chi vive in casa',rows:[
+      ['SOS con un gesto','L’unità vocale portatile chiama la Centrale anche senza telefono.','Unità vocale SOS','No','No'],
+      ['Intervento anche senza risposta','Se nessuno risponde al telefono, la Centrale parla in vivavoce.','Vivavoce H24','No','No'],
+      ['Rilevatori di fumo collegati','Non solo furti: allarme incendio gestito dalla Centrale.','Collegati alla Centrale','Dipende','Solo notifica'],
+      ['Assistenza dedicata','Un tecnico raggiungibile in qualsiasi momento.','H24','Orari ufficio','Chat o email']]},
+    cost:{label:'Costi e manutenzione',title:'Quanto ti costa davvero',rows:[
+      ['Installazione professionale','Kit base installato, attivato e collegato alla Centrale.','Inclusa da €199*','A preventivo','Fai da te'],
+      ['Garanzia sui dispositivi','Se un dispositivo si guasta, è coperto finché hai il servizio.','Per tutta la durata','1–2 anni','1–2 anni'],
+      ['Aggiornamenti software','Sistema sempre aggiornato, senza interventi a pagamento.','Automatici','Manutenzione','Sì'],
+      ['Bonus Sicurezza','Detrazione IRPEF fino al 50% delle spese di installazione nel 2026.','Sì','Sì','Dipende']]}
+  };
+  var chipsEl = document.getElementById('chips');
+  var rowsEl = document.getElementById('compare-rows');
+  var titleEl = document.getElementById('compare-title');
+  function esc(s){ return s.replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+  function render(key){
+    var d = data[key];
+    titleEl.textContent = d.title;
+    rowsEl.innerHTML = d.rows.map(function(r){
+      return '<div class="c-row"><div class="c-feat"><strong>'+esc(r[0])+'</strong><span>'+esc(r[1])+'</span></div>'+
+        '<span class="c-sa" data-label="Sector Alarm">'+CHECK+esc(r[2])+'</span>'+
+        '<span class="c-other" data-label="Tradizionale">'+esc(r[3])+'</span>'+
+        '<span class="c-other" data-label="Fai da te">'+esc(r[4])+'</span></div>';
+    }).join('');
+    chipsEl.querySelectorAll('.chip').forEach(function(c){ c.setAttribute('aria-pressed', c.dataset.key === key ? 'true' : 'false'); });
+  }
+  Object.keys(data).forEach(function(k){
+    var b = document.createElement('button');
+    b.type = 'button'; b.className = 'chip'; b.dataset.key = k; b.textContent = data[k].label;
+    b.addEventListener('click', function(){ render(k); });
+    chipsEl.appendChild(b);
+  });
+  render('away');
+
+  /* Carosello kit */
+  var car = document.getElementById('carousel');
+  var prev = document.getElementById('prev'), next = document.getElementById('next');
+  function step(){ var c = car.querySelector('.p-card'); return c ? c.getBoundingClientRect().width + 20 : 320; }
+  function updateArrows(){
+    prev.disabled = car.scrollLeft <= 2;
+    next.disabled = car.scrollLeft + car.clientWidth >= car.scrollWidth - 2;
+  }
+  prev.addEventListener('click', function(){ car.scrollBy({left:-step(), behavior:'smooth'}); });
+  next.addEventListener('click', function(){ car.scrollBy({left:step(), behavior:'smooth'}); });
+  car.addEventListener('scroll', updateArrows, {passive:true});
+  window.addEventListener('resize', updateArrows);
+  updateArrows();
+
+  /* FAQ accordion (una aperta alla volta) */
+  var qs = document.querySelectorAll('.faq-q');
+  qs.forEach(function(q){
+    q.addEventListener('click', function(){
+      var open = q.getAttribute('aria-expanded') === 'true';
+      qs.forEach(function(o){
+        o.setAttribute('aria-expanded','false');
+        o.querySelector('.sign').textContent = '+';
+        document.getElementById(o.getAttribute('aria-controls')).hidden = true;
+      });
+      if(!open){
+        q.setAttribute('aria-expanded','true');
+        q.querySelector('.sign').textContent = '−';
+        document.getElementById(q.getAttribute('aria-controls')).hidden = false;
+      }
+    });
+  });
+
+  /* Countdown detrazione 50% (31/12/2026) */
+  var end = new Date('2026-12-31T23:59:59+01:00');
+  var days = Math.max(0, Math.ceil((end - new Date()) / 86400000));
+  document.getElementById('days').textContent = days;
+})();
+</script>
+</body>
+</html>
