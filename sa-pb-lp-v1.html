@@ -61,7 +61,8 @@ sup{font-size:.5em;vertical-align:super;line-height:0}
 .promises li{display:flex;gap:10px;align-items:center;font-size:15px;font-weight:600}
 
 /* Quiz */
-.quiz{flex:1 1 400px;min-width:0;max-width:460px;background:#fff;color:var(--text);border-radius:20px;box-shadow:0 20px 60px rgba(17,17,17,.25);padding:32px;display:flex;flex-direction:column;gap:18px;scroll-margin-top:90px}
+.quiz{flex:1 1 400px;min-width:0;max-width:460px;background:#fff;color:var(--text);border-radius:20px;box-shadow:0 20px 60px rgba(17,17,17,.25);padding:32px;display:flex;flex-direction:column;gap:18px}
+.hero{scroll-margin-top:90px}
 .quiz-meta{display:flex;justify-content:space-between;font-size:13px;font-weight:600;color:var(--muted-2)}
 .progress{height:6px;background:#EEE;border-radius:3px}.progress span{display:block;width:33%;height:6px;background:var(--red);border-radius:3px}
 .quiz h2{font-size:24px;line-height:1.25;font-weight:800}
@@ -161,7 +162,7 @@ sup{font-size:.5em;vertical-align:super;line-height:0}
 .bonus .media{flex:1 1 420px;min-width:0;min-height:460px;position:relative;border-radius:20px}
 .countdown{position:absolute;right:20px;bottom:20px;background:rgba(17,17,17,.88);border:1px solid #333;border-radius:var(--radius);padding:18px 22px;display:flex;flex-direction:column;gap:6px;color:#fff}
 .countdown small{font-size:13px;color:#CCC}
-.countdown b{font-size:48px;font-weight:800;line-height:1;letter-spacing:-.03em}
+.countdown b{font-size:48px;font-weight:800;line-height:1;letter-spacing:-.03em;flex-shrink:0;white-space:nowrap}
 .countdown b span{font-size:18px;font-weight:600}
 
 /* FAQ */
@@ -193,6 +194,11 @@ sup{font-size:.5em;vertical-align:super;line-height:0}
 /* Mobile sticky bar */
 .mobile-bar{display:none}
 
+/* Mobile-only elements (hidden on desktop) */
+.hero-img-m{display:none}
+.hero-mobile{display:none}
+.vs-switch{display:none}
+
 /* ---------- Tablet ---------- */
 @media (max-width:1024px){
   :root{--sec-y:80px}
@@ -206,19 +212,29 @@ sup{font-size:.5em;vertical-align:super;line-height:0}
 @media (max-width:768px){
   :root{--sec-y:56px;--pad-x:20px}
   body{padding-bottom:76px}
+  .site-header{position:static}
   .site-header .bar{padding:10px var(--pad-x)}
   .site-header .logo{height:36px}
   .phone .num{display:none}
   .phone{width:44px;height:44px;justify-content:center;border:1.5px solid var(--line-2);border-radius:50%}
   .header-actions{gap:10px}
   .header-actions .btn{padding:10px 16px;font-size:14px}
-  .hero{background:linear-gradient(180deg,rgba(12,12,12,.86) 0%,rgba(12,12,12,.78) 100%),url("https://www.sectoralarm.it/hs-fs/hubfs/IT-Images/Landing%20pages%20(IT)/LP%20Competitor/Hero%20image/hero%20family.png") 70% center/cover no-repeat}
-  .hero .wrap{padding-top:40px;padding-bottom:48px;gap:28px}
-  .hero-copy{flex-basis:100%;gap:18px}
-  .hero h1{font-size:34px;line-height:1.1}
-  .hero .sub{font-size:16px}
-  .promises{grid-template-columns:1fr;gap:10px}
-  .quiz{flex-basis:100%;padding:22px;border-radius:18px}
+  .hero{display:none}
+  .hero-mobile{display:block;background:var(--bg-alt);scroll-margin-top:12px}
+  .hm-img{width:100%;aspect-ratio:16/10;overflow:hidden}
+  .hm-img img{width:100%;height:100%;object-fit:cover;object-position:60% center}
+  .hm-body{padding:24px var(--pad-x) 32px;display:flex;flex-direction:column;gap:20px}
+  .hm-title{font-size:30px;line-height:1.1;font-weight:800;letter-spacing:-.02em;color:var(--ink)}
+  .hm-title span{color:var(--red)}
+  .hm-sub-text{font-size:15px;line-height:1.55;color:var(--muted);margin:0;display:-webkit-box;-webkit-line-clamp:2;line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+  .hm-sub-text[data-collapsed="false"]{display:block;-webkit-line-clamp:unset;line-clamp:unset;overflow:visible}
+  .hm-more{background:none;border:0;padding:6px 0 0;color:var(--green);font-weight:700;font-size:14px;align-self:flex-start}
+  .hm-more:hover{text-decoration:underline}
+  .quiz-mobile{padding:22px;border-radius:18px;max-width:none;box-shadow:0 8px 24px rgba(17,17,17,.08);border:1px solid var(--line)}
+  .quiz-mobile .help a{display:block;margin-top:4px}
+  .hm-promises{list-style:none;display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-inline:var(--pad-x);-webkit-overflow-scrolling:touch;scrollbar-width:none;margin:0 calc(var(--pad-x)*-1);padding:4px var(--pad-x)}
+  .hm-promises::-webkit-scrollbar{display:none}
+  .hm-promises li{flex:none;scroll-snap-align:start;display:flex;gap:8px;align-items:center;font-size:14px;font-weight:600;background:#fff;border-radius:999px;padding:10px 16px;white-space:nowrap;box-shadow:0 1px 2px rgba(0,0,0,.04)}
   .quiz h2{font-size:21px}
   .tile{min-height:72px;padding:12px}
   .h2{font-size:28px;line-height:1.15}
@@ -230,11 +246,16 @@ sup{font-size:.5em;vertical-align:super;line-height:0}
   .chips::-webkit-scrollbar{display:none}
   .compare{border-radius:16px}
   .c-head{display:none}
-  .c-row{grid-template-columns:repeat(3,minmax(0,1fr));gap:12px 10px;padding:18px 20px}
-  .c-feat{grid-column:1/-1;padding-right:0}
+  .vs-switch{display:flex;background:#F0EFEC;border-radius:999px;padding:4px;gap:4px;margin-bottom:12px}
+  .vs-switch button{flex:1;min-height:40px;background:transparent;border:0;border-radius:999px;font-weight:700;font-size:13px;color:var(--muted);padding:8px 10px;transition:background .15s,color .15s}
+  .vs-switch button[aria-pressed="true"]{background:#fff;color:var(--ink);box-shadow:0 1px 3px rgba(0,0,0,.08)}
+  .c-row{grid-template-columns:1fr 1fr;gap:10px 12px;padding:18px 20px}
+  .c-feat{grid-column:1/-1;padding-right:0;padding-bottom:4px;border-bottom:1px solid #F1F1F1;margin-bottom:8px}
   .c-row>.c-sa,.c-row>.c-other{display:flex;flex-direction:column;align-items:flex-start;gap:4px;font-size:14px;line-height:1.35}
   .c-row>.c-sa::before,.c-row>.c-other::before{content:attr(data-label);font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:#888}
   .c-row>.c-sa svg{display:none}
+  .c-row.hide-tradiz>.c-other[data-label="Tradizionale"],
+  .c-row.hide-diy>.c-other[data-label="Fai da te"]{display:none}
   .c-foot{padding:18px 20px}
   .c-foot .btn{width:100%}
   .carousel{margin:0 calc(var(--pad-x)*-1);padding:0 var(--pad-x) 2px;scroll-padding:0 var(--pad-x)}
@@ -268,7 +289,8 @@ sup{font-size:.5em;vertical-align:super;line-height:0}
   .final .wrap{padding-top:56px;padding-bottom:56px}
   .final .btn-row .btn{flex:1 1 100%}
   .site-footer .wrap{padding-top:36px;padding-bottom:36px}
-  .mobile-bar{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:60;gap:10px;padding:12px var(--pad-x) calc(12px + env(safe-area-inset-bottom));background:#fff;border-top:1px solid var(--line);box-shadow:0 -6px 20px rgba(0,0,0,.06)}
+  .mobile-bar{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:60;gap:10px;padding:12px var(--pad-x) calc(12px + env(safe-area-inset-bottom));background:#fff;border-top:1px solid var(--line);box-shadow:0 -6px 20px rgba(0,0,0,.06);transform:translateY(100%);transition:transform .25s ease-out;pointer-events:none}
+  .mobile-bar.is-visible{transform:translateY(0);pointer-events:auto}
   .mobile-bar .btn{min-height:48px;font-size:15px}
   .mobile-bar .btn-primary{flex:1}
   .mobile-bar .btn-outline{width:52px;padding:0}
@@ -298,8 +320,8 @@ sup{font-size:.5em;vertical-align:super;line-height:0}
 
 <main>
 
-<!-- M02 HERO + QUIZ -->
-<section class="hero">
+<!-- M02 HERO (desktop) -->
+<section class="hero" id="quiz">
   <div class="wrap">
     <div class="hero-copy">
       <h1>Allarme intruso?<br><span>Rispondiamo in meno di 30 secondi.<sup>**</sup></span></h1>
@@ -312,19 +334,54 @@ sup{font-size:.5em;vertical-align:super;line-height:0}
       </ul>
     </div>
 
-    <div class="quiz" id="quiz">
+    <div class="quiz" id="quiz-desktop">
       <div class="quiz-meta"><span>Preventivo in 1 minuto</span><span>Passo 1 di 3</span></div>
       <div class="progress" aria-hidden="true"><span></span></div>
-      <h2 id="quiz-q">Cosa vuoi proteggere?</h2>
-      <div class="tiles" role="group" aria-labelledby="quiz-q">
+      <h2 id="quiz-q-d">Cosa vuoi proteggere?</h2>
+      <div class="tiles" role="group" aria-labelledby="quiz-q-d">
         <button type="button" class="tile" data-value="villetta" aria-pressed="false"><strong>Villetta</strong><small>Casa indipendente</small></button>
         <button type="button" class="tile" data-value="appartamento" aria-pressed="false"><strong>Appartamento</strong><small>In condominio</small></button>
         <button type="button" class="tile" data-value="attivita" aria-pressed="false"><strong>Attività</strong><small>Negozio o ufficio</small></button>
         <button type="button" class="tile" data-value="altro" aria-pressed="false"><strong>Altro</strong><small>Seconda casa, box…</small></button>
       </div>
-      <a class="quiz-cta" id="quiz-cta" href="https://www.sectoralarm.it/q/home/qt2/" aria-disabled="true">Seleziona un’opzione per continuare</a>
+      <a class="quiz-cta" href="https://www.sectoralarm.it/q/home/qt2/" aria-disabled="true">Seleziona un’opzione per continuare</a>
       <p class="help">Preferisci parlare con un esperto? <a href="tel:800247800"><strong>Chiama l'800 24 7 800</strong></a></p>
     </div>
+  </div>
+</section>
+
+<!-- M02M HERO (mobile) -->
+<section class="hero-mobile" id="quiz-m" aria-label="Protezione casa">
+  <div class="hm-img">
+    <img src="https://www.sectoralarm.it/hs-fs/hubfs/IT-Images/Landing%20pages%20(IT)/LP%20Competitor/Hero%20image/hero%20family.png" alt="Famiglia protetta dal sistema di allarme Sector Alarm" loading="eager" width="800" height="600">
+  </div>
+  <div class="hm-body">
+    <h1 class="hm-title">Allarme intruso?<br><span>Rispondiamo in meno di 30 secondi.<sup>**</sup></span></h1>
+    <div class="hm-sub">
+      <p class="hm-sub-text" data-collapsed="true">Il sistema di allarme casa Sector Alarm è collegato alla nostra Centrale Operativa: quando scatta, un operatore verifica con foto e audio e, se serve, allerta subito Forze dell'Ordine e soccorsi. Anche quando tu non puoi rispondere.</p>
+      <button type="button" class="hm-more" aria-expanded="false" aria-controls="hm-sub-text">Leggi di più</button>
+    </div>
+
+    <div class="quiz quiz-mobile">
+      <div class="quiz-meta"><span>Preventivo in 1 minuto</span><span>Passo 1 di 3</span></div>
+      <div class="progress" aria-hidden="true"><span></span></div>
+      <h2 id="quiz-q-m">Cosa vuoi proteggere?</h2>
+      <div class="tiles" role="group" aria-labelledby="quiz-q-m">
+        <button type="button" class="tile" data-value="villetta" aria-pressed="false"><strong>Villetta</strong><small>Casa indipendente</small></button>
+        <button type="button" class="tile" data-value="appartamento" aria-pressed="false"><strong>Appartamento</strong><small>In condominio</small></button>
+        <button type="button" class="tile" data-value="attivita" aria-pressed="false"><strong>Attività</strong><small>Negozio o ufficio</small></button>
+        <button type="button" class="tile" data-value="altro" aria-pressed="false"><strong>Altro</strong><small>Seconda casa, box…</small></button>
+      </div>
+      <a class="quiz-cta" href="https://www.sectoralarm.it/q/home/qt2/" aria-disabled="true">Seleziona un’opzione per continuare</a>
+      <p class="help">Preferisci parlare con un esperto? <a href="tel:800247800"><strong>Chiama l'800 24 7 800</strong></a></p>
+    </div>
+
+    <ul class="hm-promises" aria-label="Vantaggi">
+      <li><svg class="check" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5BC79A" stroke-width="2.5" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Installazione inclusa da €199*</li>
+      <li><svg class="check" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5BC79A" stroke-width="2.5" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Sopralluogo gratuito, senza impegno</li>
+      <li><svg class="check" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5BC79A" stroke-width="2.5" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Garanzia per tutta la durata</li>
+      <li><svg class="check" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5BC79A" stroke-width="2.5" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Detrazione fino al 50% nel 2026******</li>
+    </ul>
   </div>
 </section>
 
@@ -362,6 +419,10 @@ sup{font-size:.5em;vertical-align:super;line-height:0}
       <p class="lead">Scegli la situazione più vicina alla tua: ti mostriamo solo le differenze che contano.</p>
     </div>
     <div class="chips" id="chips" role="group" aria-label="Filtra il confronto per problema"></div>
+    <div class="vs-switch" role="group" aria-label="Confronta Sector Alarm con">
+      <button type="button" data-vs="tradiz" aria-pressed="true">vs Impianto tradizionale</button>
+      <button type="button" data-vs="diy" aria-pressed="false">vs Telecamere fai da te</button>
+    </div>
     <div class="compare">
       <div class="c-row c-head">
         <span id="compare-title">Quando non ci sei</span>
@@ -579,18 +640,48 @@ sup{font-size:.5em;vertical-align:super;line-height:0}
 
 <script>
 (function(){
-  /* Quiz step 1 */
+  /* Mobile: reindirizza i link #quiz al blocco mobile */
+  if(window.matchMedia('(max-width:768px)').matches){
+    document.querySelectorAll('a[href="#quiz"]').forEach(function(a){ a.setAttribute('href','#quiz-m'); });
+  }
+
+  /* Mobile: sticky bar appare quando l'hero esce dal viewport */
+  var heroM = document.querySelector('.hero-mobile');
+  var bar = document.querySelector('.mobile-bar');
+  if(heroM && bar && 'IntersectionObserver' in window){
+    new IntersectionObserver(function(entries){
+      bar.classList.toggle('is-visible', !entries[0].isIntersecting);
+    }, {rootMargin:'0px 0px -80% 0px'}).observe(heroM);
+  } else if(bar){
+    bar.classList.add('is-visible');
+  }
+
+  /* Hero mobile: "Leggi di più" toggle */
+  var moreBtn = document.querySelector('.hm-more');
+  if(moreBtn){
+    var subText = document.querySelector('.hm-sub-text');
+    moreBtn.addEventListener('click', function(){
+      var collapsed = subText.getAttribute('data-collapsed') === 'true';
+      subText.setAttribute('data-collapsed', collapsed ? 'false' : 'true');
+      moreBtn.setAttribute('aria-expanded', collapsed ? 'true' : 'false');
+      moreBtn.textContent = collapsed ? 'Mostra meno' : 'Leggi di più';
+    });
+  }
+
+  /* Quiz step 1 (gestisce sia blocco desktop che mobile) */
   var QUIZ_URL = 'https://www.sectoralarm.it/q/home/qt2/';
-  var tiles = document.querySelectorAll('.tile');
-  var cta = document.getElementById('quiz-cta');
-  tiles.forEach(function(t){
-    t.addEventListener('click', function(){
-      tiles.forEach(function(x){ x.setAttribute('aria-pressed','false'); });
-      t.setAttribute('aria-pressed','true');
-      cta.classList.add('is-active');
-      cta.removeAttribute('aria-disabled');
-      cta.textContent = 'Continua →';
-      cta.href = QUIZ_URL + '?proprieta=' + encodeURIComponent(t.dataset.value) + location.search.replace(/^\?/, '&');
+  document.querySelectorAll('.quiz').forEach(function(quiz){
+    var tiles = quiz.querySelectorAll('.tile');
+    var cta = quiz.querySelector('.quiz-cta');
+    tiles.forEach(function(t){
+      t.addEventListener('click', function(){
+        tiles.forEach(function(x){ x.setAttribute('aria-pressed','false'); });
+        t.setAttribute('aria-pressed','true');
+        cta.classList.add('is-active');
+        cta.removeAttribute('aria-disabled');
+        cta.textContent = 'Continua →';
+        cta.href = QUIZ_URL + '?proprieta=' + encodeURIComponent(t.dataset.value) + location.search.replace(/^\?/, '&');
+      });
     });
   });
 
@@ -626,7 +717,15 @@ sup{font-size:.5em;vertical-align:super;line-height:0}
   var chipsEl = document.getElementById('chips');
   var rowsEl = document.getElementById('compare-rows');
   var titleEl = document.getElementById('compare-title');
+  var vsBtns = document.querySelectorAll('.vs-switch button');
+  var currentVs = 'tradiz';
   function esc(s){ return s.replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+  function applyVsClass(){
+    rowsEl.querySelectorAll('.c-row').forEach(function(row){
+      row.classList.remove('hide-tradiz','hide-diy');
+      row.classList.add(currentVs === 'tradiz' ? 'hide-diy' : 'hide-tradiz');
+    });
+  }
   function render(key){
     var d = data[key];
     titleEl.textContent = d.title;
@@ -637,12 +736,20 @@ sup{font-size:.5em;vertical-align:super;line-height:0}
         '<span class="c-other" data-label="Fai da te">'+esc(r[4])+'</span></div>';
     }).join('');
     chipsEl.querySelectorAll('.chip').forEach(function(c){ c.setAttribute('aria-pressed', c.dataset.key === key ? 'true' : 'false'); });
+    applyVsClass();
   }
   Object.keys(data).forEach(function(k){
     var b = document.createElement('button');
     b.type = 'button'; b.className = 'chip'; b.dataset.key = k; b.textContent = data[k].label;
     b.addEventListener('click', function(){ render(k); });
     chipsEl.appendChild(b);
+  });
+  vsBtns.forEach(function(b){
+    b.addEventListener('click', function(){
+      currentVs = b.dataset.vs;
+      vsBtns.forEach(function(x){ x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
+      applyVsClass();
+    });
   });
   render('away');
 
